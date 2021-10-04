@@ -7,7 +7,12 @@
       </tr>
       <tr v-for="(value, key) in statisticsItem" :key="value">
         <td>{{ getWorkItemKey.getItemKey(key) }}</td>
-        <td>{{ value }}</td>
+        <td
+          class="number
+"
+        >
+          {{ value }}
+        </td>
       </tr>
     </tbody>
   </table>

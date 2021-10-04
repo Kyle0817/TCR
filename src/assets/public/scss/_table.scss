@@ -1,8 +1,9 @@
 table {
+  font-family: 'Noto Sans TC', sans-serif;
   // border: 1px solid black;
   th {
     font-size: 18px;
-    font-weight:bold;
+    font-weight:500;
     background-color: $firstColor;
     padding: 10px 15px;
     color: $white;
@@ -13,17 +14,17 @@ table {
   }
   tr{
      &:nth-child(odd){
-      background-color: #EFF7F8;
+      background-color: $tdColor;
     }
   td{
       padding: 6px 10px;
-      // background-color: #EFF7F8;
       color: $black;
-      &:nth-child(odd){
-        border-right: 1px solid $white;
-        text-align: center;
+      text-align: center;
+      border-right: 1px solid $white;
+      &:last-child{
+        border-right: none;
       }
-       &:nth-child(even){
+       &.number{
         text-align: right;
       }
     }

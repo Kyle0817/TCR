@@ -12,14 +12,28 @@
       <tr v-for="item in inventory" :key="item.Cassette">
         <td>{{ item.Cassette }}</td>
         <td>{{ mode.getMode(item.Mode) }}</td>
-        <td v-for="inventoryInside in item.Inventory" :key="inventoryInside.Denomination">
+        <td
+          class="number"
+          v-for="inventoryInside in item.Inventory"
+          :key="inventoryInside.Denomination"
+        >
           {{ inventoryInside.Denomination }}
         </td>
         <td>{{ item.Status }}</td>
-        <td v-for="inventoryInside in item.Inventory" :key="inventoryInside.Denomination">
-          {{ inventoryInside.Value }}</td>
-        <td v-for="inventoryInside in item.Inventory" :key="inventoryInside.Denomination">
-          {{ inventoryInside.Denomination * inventoryInside.Value }}</td>
+        <td
+          class="number"
+          v-for="inventoryInside in item.Inventory"
+          :key="inventoryInside.Denomination"
+        >
+          {{ inventoryInside.Value }}
+        </td>
+        <td
+          class="number"
+          v-for="inventoryInside in item.Inventory"
+          :key="inventoryInside.Denomination"
+        >
+          {{ inventoryInside.Denomination * inventoryInside.Value }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -82,3 +96,6 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@import '@/assets/public/scss/table.scss';
+</style>
