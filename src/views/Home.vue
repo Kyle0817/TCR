@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <tcrStatus></tcrStatus>
+    <statistics></statistics>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import tcrStatus from '@/components/TcrStatus.vue';
+import statistics from '@/components/Statistics.vue';
 
 export default {
   name: 'Home',
   components: {
-    tcrStatus,
+    statistics,
   },
 };
 </script>
