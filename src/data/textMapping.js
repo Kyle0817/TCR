@@ -10,7 +10,18 @@ export default {
     TCU: '卸幣',
   },
 
+  mode: {
+    R: '回收箱',
+    D: '存款箱',
+    P: '放款箱',
+    M: '混鈔存款',
+  },
+
   getItemKey(key) {
     return this.itemKey[key];
+  },
+
+  getMode(key) {
+    return this.mode[key];
   },
 };

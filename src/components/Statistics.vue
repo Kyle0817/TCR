@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import statisticsMapping from '@/data/statisticsMapping';
+import textMapping from '@/data/textMapping';
 
 export default {
   data() {
@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     getWorkItemKey() {
-      return statisticsMapping;
+      return textMapping;
     },
   },
 };
