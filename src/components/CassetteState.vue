@@ -19,7 +19,11 @@
         >
           {{ inventoryInside.Denomination }}
         </td>
-        <td>{{ item.Status }}</td>
+        <td>
+          <div class="full">
+            <p>{{ item.Status }}</p>
+          </div>
+        </td>
         <td
           class="number"
           v-for="inventoryInside in item.Inventory"

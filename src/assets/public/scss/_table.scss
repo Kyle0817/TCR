@@ -21,6 +21,7 @@ table {
       color: $black;
       text-align: center;
       border-right: 1px solid $white;
+      vertical-align: middle;
       &:last-child{
         border-right: none;
       }
@@ -28,8 +29,13 @@ table {
         text-align: right;
       }
       div{
-        padding: 5px;
+        display: inline-block;
+        // padding: 5px ;
+        height: 24px;
+        width: 24px;
         border-radius: 5px;
+        min-width: 11px;
+        position: relative;
         &.full{
           background-color: #A0EFEA;
           color: #01717D;
@@ -49,6 +55,13 @@ table {
         &.empty{
           background-color: #FBB5A8;
           color: #FE0000;
+        }
+        p{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%,-50%);
+
         }
       }
     }
