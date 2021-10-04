@@ -27,6 +27,30 @@ table {
        &.number{
         text-align: right;
       }
+      div{
+        padding: 5px;
+        border-radius: 5px;
+        &.full{
+          background-color: #A0EFEA;
+          color: #01717D;
+        }
+        &.high{
+          background-color: #A0EFC9;
+          color: #147D88;
+        }
+        &.good{
+          background-color: #FFD47D;
+          color: #C56300;
+        }
+        &.low{
+          background-color: #FBC9A8;
+          color: #E17305;
+        }
+        &.empty{
+          background-color: #FBB5A8;
+          color: #FE0000;
+        }
+      }
     }
   }
   
