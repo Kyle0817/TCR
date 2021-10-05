@@ -1,4 +1,7 @@
 <template>
+  <button type='button' @click='inventory = cashBox'>鈔箱</button>
+  <button type='button' @click='inventory = coinBox'>硬幣盒</button>
+  <button type='button' @click='inventory = recycleBox'>回收盒</button>
   <table>
     <tbody>
       <tr>
@@ -49,7 +52,11 @@ import textMapping from '@/data/textMapping';
 export default {
   data() {
     return {
-      inventory: [
+      cashBox: [], // 鈔箱
+      coinBox: [], // 硬幣盒
+      recycleBox: [], // 回收盒
+      inventory: [],
+      inventoryData: [
         {
           Cassette: 'B1', // 鈔箱
           Mode: 'R', // 模式
@@ -78,15 +85,54 @@ export default {
           ],
         },
         {
-          Cassette: 'B3', // 鈔箱
+          Cassette: 'C1', // 鈔箱
           Mode: 'M', // 模式
           Status: 'F', // 鈔箱水位狀態
-          Value: 1000, // 張數
+          Value: 0, // 張數
+          Inventory: [
+            {
+              Currency: 'TWD', // 貨幣
+              Denomination: 10, // 面額
+              Value: 0, // 張數
+            },
+          ],
+        },
+        {
+          Cassette: 'C2', // 鈔箱
+          Mode: 'M', // 模式
+          Status: 'F', // 鈔箱水位狀態
+          Value: 0, // 張數
+          Inventory: [
+            {
+              Currency: 'TWD', // 貨幣
+              Denomination: 50, // 面額
+              Value: 0, // 張數
+            },
+          ],
+        },
+        {
+          Cassette: 'BR', // 鈔箱
+          Mode: '', // 模式
+          Status: 'F', // 鈔箱水位狀態
+          Value: 10, // 張數
           Inventory: [
             {
               Currency: 'TWD', // 貨幣
               Denomination: 1000, // 面額
-              Value: 100, // 張數
+              Value: 10, // 張數
+            },
+          ],
+        },
+        {
+          Cassette: 'CR', // 鈔箱
+          Mode: '', // 模式
+          Status: 'F', // 鈔箱水位狀態
+          Value: 20, // 張數
+          Inventory: [
+            {
+              Currency: 'TWD', // 貨幣
+              Denomination: 50, // 面額
+              Value: 20, // 張數
             },
           ],
         },
@@ -98,8 +144,33 @@ export default {
       return textMapping;
     },
   },
+  methods: {
+    tcrClassification() {
+      this.inventoryData.forEach((item) => {
+        switch (true) {
+          case item.Cassette.startsWith('B') && !item.Cassette.includes('R'):
+            this.cashBox.push(item);
+            break;
+          case item.Cassette.startsWith('C') && !item.Cassette.includes('R'):
+            this.coinBox.push(item);
+            break;
+          case item.Cassette.includes('R'):
+            this.recycleBox.push(item);
+            break;
+          default:
+        }
+      });
+      console.log('鈔箱:', this.cashBox);
+      console.log('硬幣盒:', this.coinBox);
+      console.log('回收盒:', this.recycleBox);
+    },
+  },
+  mounted() {
+    this.tcrClassification();
+    this.inventory = this.cashBox;
+  },
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/public/scss/table.scss';
+@import '@/assets/public/scss/_table.scss';
 </style>
