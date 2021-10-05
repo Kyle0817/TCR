@@ -14,7 +14,11 @@
       </tr>
       <tr v-for="item in inventory" :key="item.Cassette">
         <td>{{ item.Cassette }}</td>
-        <td>{{ mode.getMode(item.Mode) }}</td>
+        <td>
+          {{
+            item.Mode ? mode.getMode(item.Mode) : item.Cassette === 'BR' ? '鈔票回收' : '硬幣回收'
+          }}
+        </td>
         <td
           class="number"
           v-for="inventoryInside in item.Inventory"

@@ -1,22 +1,46 @@
 <template>
   <div class="home">
-    <statistics></statistics>
+    <Statistics />
     <div>
-      <cassetteState></cassetteState>
+      <CassetteState />
+    </div>
+    <div>
+      <table>
+        <tr>
+          <td>TCR機台號</td>
+          <td>TCR14301</td>
+        </tr>
+        <tr>
+          <td>TCR櫃號</td>
+          <td>9301</td>
+        </tr>
+        <tr>
+          <td>櫃員編號</td>
+          <td>114203</td>
+        </tr>
+        <tr>
+          <td>分行系統狀態</td>
+          <td>連線</td>
+        </tr>
+        <tr>
+          <td>TCR機台狀態</td>
+          <td>正常</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import statistics from '@/components/Statistics.vue';
-import cassetteState from '@/components/CassetteState.vue';
+import Statistics from '@/components/Statistics.vue';
+import CassetteState from '@/components/CassetteState.vue';
 
 export default {
   name: 'Home',
   components: {
-    statistics,
-    cassetteState,
+    Statistics,
+    CassetteState,
   },
 };
 </script>
