@@ -49,6 +49,7 @@ export default {
   border: 1px solid black;
   display: inline-block;
   margin-left: 86px;
+  margin-top: 65px;
   max-width: calc(100vw - 76px);
 }
 </style>

@@ -1,14 +1,12 @@
 div.menuBg{
-  background-color: $firstColor;
+  background-color: $secondColor;
   color: $white;
   display: inline-block;
   padding: 18vh 15px 18vh 15px;
   height: 100vh;
-  // position: -webkit-sticky;
   position: fixed;
-  // overflow: auto;
   top: 0;
-  // left: 0;
+  z-index: 99;
   border-radius: 0 20px 20px 0;
   ul.outUl{
     // border: 1px solid wheat;
@@ -26,7 +24,7 @@ div.menuBg{
     cursor: pointer;
       &:hover{
         background-color: $white;
-        color: $firstColor;
+        color: $secondColor;
         transition: .3s;
       }
 
@@ -41,7 +39,7 @@ div.menuBg{
         border-radius: 25px;
           &:hover{
             background-color: $white;
-            color: $firstColor;
+            color: $secondColor;
             transition: .3s;
           }
         }
