@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <statistics></statistics>
-  </div>
-  <div>
-    <cassetteState></cassetteState>
+    <div>
+      <cassetteState></cassetteState>
+    </div>
   </div>
 </template>
 
@@ -20,3 +20,11 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.home {
+  border: 1px solid black;
+  display: inline-block;
+  margin-left: 86px;
+  max-width: calc(100vw - 76px);
+}
+</style>

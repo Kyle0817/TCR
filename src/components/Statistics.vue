@@ -44,5 +44,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/public/scss/table.scss';
+@import '@/assets/public/scss/_table.scss';
 </style>

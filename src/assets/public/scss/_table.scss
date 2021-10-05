@@ -7,7 +7,7 @@ table {
     background-color: $firstColor;
     padding: 10px 15px;
     color: $white;
-    border-right: 1px solid $white;
+    border-right: 1px solid $grey;
     &:last-child{
        border-right: none;
     }
@@ -16,11 +16,14 @@ table {
      &:nth-child(odd){
       background-color: $tdColor;
     }
+     &:nth-child(even){
+      background-color: $white;
+    }
   td{
       padding: 6px 10px;
       color: $black;
       text-align: center;
-      border-right: 1px solid $white;
+      border-right: 1px solid $grey;
       vertical-align: middle;
       &:last-child{
         border-right: none;
