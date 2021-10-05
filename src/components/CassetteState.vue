@@ -1,7 +1,7 @@
 <template>
-  <button type='button' @click='inventory = cashBox'>鈔箱</button>
-  <button type='button' @click='inventory = coinBox'>硬幣盒</button>
-  <button type='button' @click='inventory = recycleBox'>回收盒</button>
+  <button type="button" @click="inventory = cashBox">鈔箱</button>
+  <button type="button" @click="inventory = coinBox">硬幣盒</button>
+  <button type="button" @click="inventory = recycleBox">回收盒</button>
   <table>
     <tbody>
       <tr>
@@ -23,7 +23,15 @@
           {{ inventoryInside.Denomination }}
         </td>
         <td>
-          <div class="full">
+          <div
+            :class="{
+              full: item.Status === 'F',
+              high: item.Status === 'H',
+              good: item.Status === 'G',
+              low: item.Status === 'L',
+              empty: item.Status === 'E',
+            }"
+          >
             <p>{{ item.Status }}</p>
           </div>
         </td>
