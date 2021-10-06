@@ -92,9 +92,11 @@
         }
         .iconWrap {
           background-color: $secondColor;
+          width: 60px;
           color: $white;
           padding: 0 12px;
           border-radius: 10px;
+          text-align: center;
           i {
             font-size: 28px;
             line-height: 57px;

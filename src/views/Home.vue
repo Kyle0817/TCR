@@ -43,7 +43,7 @@
             <p>庫存硬幣總金額</p>
           </div>
           <div class="iconWrap">
-            <i class="fas fa-money-bill-wave"></i>
+            <i class="fas fa-coins"></i>
           </div>
         </div>
 
@@ -53,7 +53,7 @@
             <p>庫存合計總金額</p>
           </div>
           <div class="iconWrap">
-            <i class="fas fa-money-bill-wave"></i>
+            <i class="fas fa-dollar-sign"></i>
           </div>
         </div>
       </div>
