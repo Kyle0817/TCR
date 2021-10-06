@@ -1,16 +1,12 @@
 <template>
   <router-view name="Menu"></router-view>
-  <Header />
+  <router-view name="Header"></router-view>
   <router-view name="Hamburger"></router-view>
   <router-view />
 </template>
 <script>
-import Header from '@/components/public/Header.vue';
-
 export default {
-  components: {
-    Header,
-  },
+  components: {},
 };
 </script>
 <style lang="scss">

@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Menu from '@/components/public/Menu.vue';
 import Hamburger from '@/components/public/Hamburger.vue';
+import Header from '@/components/public/Header.vue';
 
 const routes = [
   {
@@ -11,6 +12,7 @@ const routes = [
       default: Home,
       Menu,
       Hamburger,
+      Header,
     },
   },
   {
