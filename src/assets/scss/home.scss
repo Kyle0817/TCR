@@ -1,0 +1,106 @@
+.home {
+  // border: 1px solid black;
+  display: inline-block;
+  margin-left: 76px;
+  margin-top: 55px;
+  max-width: calc(100vw - 76px);
+  padding: 0;
+  min-width: calc(1024px - 76px);
+  display: flex;
+
+  .main {
+    border: 1px solid rgb(253, 169, 169);
+    // min-width: 650px;
+  }
+  .sideInfoWrap {
+    // border: 1px solid rgb(255, 156, 156);
+    background-color: $fourthColor;
+    height: calc(100vh - 55px);
+    min-width: 300px;
+    .calendar {
+      // border: 1px solid black;
+      margin-top: 15px;
+      display: flex;
+      justify-content: space-between;
+      height: 78px;
+      div.date {
+        background-color: $white;
+        background: linear-gradient(to bottom, $firstColor 0%, $firstColor 16%, $white 16%, $white 100%);
+        padding: 10px 8px;
+        border-radius: 8px;
+        width: 25%;
+        min-width: 67px;
+        text-align: center;
+        p {
+          margin-top: 8px;
+          font-size: 20px;
+          &.weekday {
+            margin-top: 15px;
+            font-size: 16px;
+          }
+          &.date {
+            line-height: 48px;
+            font-size: 32px;
+          }
+        }
+      }
+    }
+    table.infoWrap {
+      background-color: $thirdColor;
+      border-radius: 10px;
+      margin-top: 25px;
+      width: 100%;
+      color: $black;
+      tr {
+        border-bottom: 2px solid $fourthColor;
+        margin: 10px;
+        &:last-child {
+          border-bottom: none;
+        }
+        td {
+          padding: 14px 12px;
+          // border: 1px solid black;
+          // width: 50%;
+          &:first-child {
+            min-width: 120px;
+          }
+          &:last-child {
+            color: $white;
+          }
+        }
+      }
+    }
+    div.totalWrap {
+      // border: 1px solid black;
+      margin-top: 55px;
+      margin-bottom: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      .threeTotal {
+        background-color: $white;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-radius: 10px;
+        .textWrap {
+          p:first-child {
+            font-size: 24px;
+            margin-bottom: 15px;
+          }
+        }
+        .iconWrap {
+          background-color: $secondColor;
+          color: $white;
+          padding: 0 12px;
+          border-radius: 10px;
+          i {
+            font-size: 28px;
+            line-height: 57px;
+          }
+        }
+      }
+    }
+  }
+}

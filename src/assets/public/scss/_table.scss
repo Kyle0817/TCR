@@ -1,40 +1,40 @@
 table {
-  font-family: 'Noto Sans TC', sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
   // border: 1px solid black;
   th {
     font-size: 18px;
-    font-weight:500;
+    font-weight: 500;
     background-color: $firstColor;
     padding: 10px 15px;
     color: $white;
     border-right: 1px solid $grey;
-    &:last-child{
-       border-right: none;
+    &:last-child {
+      border-right: none;
     }
   }
-  tr{
-     &:nth-child(odd){
+  tr {
+    &:nth-child(odd) {
       background-color: $tdColor;
     }
-     &:nth-child(even){
+    &:nth-child(even) {
       background-color: $white;
     }
-     &:nth-child(5){
+    &:nth-child(5) {
       border-bottom: 2px solid $thirdColor;
     }
-  td{
+    td {
       padding: 6px 10px;
       color: $black;
       text-align: center;
       border-right: 1px solid $grey;
       vertical-align: middle;
-      &:last-child{
+      &:last-child {
         border-right: none;
       }
-       &.number{
+      &.number {
         text-align: right;
       }
-      div{
+      div {
         display: inline-block;
         // padding: 5px ;
         height: 24px;
@@ -42,36 +42,33 @@ table {
         border-radius: 5px;
         min-width: 11px;
         position: relative;
-        &.full{
-          background-color: #A0EFEA;
-          color: #01717D;
+        &.full {
+          background-color: #a0efea;
+          color: #01717d;
         }
-        &.high{
-          background-color: #A0EFC9;
-          color: #147D88;
+        &.high {
+          background-color: #a0efc9;
+          color: #147d88;
         }
-        &.good{
-          background-color: #FFD47D;
-          color: #C56300;
+        &.good {
+          background-color: #ffd47d;
+          color: #c56300;
         }
-        &.low{
-          background-color: #FBC9A8;
-          color: #E17305;
+        &.low {
+          background-color: #fbc9a8;
+          color: #e17305;
         }
-        &.empty{
-          background-color: #FBB5A8;
-          color: #FE0000;
+        &.empty {
+          background-color: #fbb5a8;
+          color: #fe0000;
         }
-        p{
+        p {
           position: absolute;
           left: 50%;
           top: 50%;
-          transform: translate(-50%,-50%);
-
+          transform: translate(-50%, -50%);
         }
       }
     }
   }
-  
-  
 }

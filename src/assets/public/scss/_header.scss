@@ -1,4 +1,4 @@
-header{
+header {
   background-color: $white;
   height: 55px;
   padding: 5px 10px 5px 76px;
@@ -10,25 +10,64 @@ header{
   left: 0;
   z-index: 98;
   min-width: 1024px;
-  box-shadow: 1px 1px 10px  rgba(114, 114, 114, 0.2);
-  .logoWrap{
+  box-shadow: 1px 1px 10px rgba(114, 114, 114, 0.2);
+  .logoWrap {
     // display: inline-block;
     height: 45px;
-    img{
+    img {
       height: 100%;
       width: auto;
     }
   }
-  .textSection{
-    border: 1px solid black;
-    // display: inline-block;
-    div{
+  .textSection {
+    line-height: 43px;
+    div {
       display: inline-block;
-      p{
-      display: inline-block;
+      margin-right: 25px;
+      &.lightWrap {
+        span {
+          padding: 4px 12px;
+          color: $black;
+          cursor: pointer;
+          background-color: $grey;
 
+          &.leftLight {
+            // background-color: $warnColor;
+            border-radius: 8px 0 0 8px;
+            border-right: 1px solid $white;
+          }
+          &.rightLight {
+            // background-color: $warnColor;
+            border-radius: 0 8px 8px 0;
+          }
+          &.active {
+            background-color: $warnColor;
+            color: rgb(190, 3, 3);
+            font-weight: 600;
+          }
+        }
+      }
+      p {
+        display: inline-block;
+        &.name {
+          margin-left: 10px;
+        }
       }
     }
-
+    button {
+      background-color: $fourthColor;
+      outline: none;
+      color: $firstColor;
+      padding: 6px 8px;
+      font-size: 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      &:hover {
+        background-color: $thirdColor;
+        color: $white;
+      }
+    }
   }
 }

@@ -5,16 +5,16 @@
     </div>
     <div class="textSection">
       <div class="lightWrap">
-        <span class="leftLight">左</span>
+        <span class="leftLight active">左</span>
         <span class="rightLight">右</span>
       </div>
       <div>
         <p>S47123</p>
-        <p>某某某</p>
+        <p class="name">某某某</p>
       </div>
-      <button>
+      <button type="button">
         <i class="fas fa-sign-out-alt"></i>
-        <p>登出</p>
+        <i class="fas fa-sign-in-alt" v-if="false"></i>
       </button>
     </div>
   </header>
