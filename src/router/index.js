@@ -1,11 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue';
+import Menu from '@/components/public/Menu.vue';
+import Hamburger from '@/components/public/Hamburger.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    components: {
+      default: Home,
+      Menu,
+      Hamburger,
+    },
   },
   {
     path: '/about',
