@@ -10,14 +10,14 @@
     <div class="sideInfoWrap col-3">
       <div class="calendar">
         <div class="date boxShadow">
-          <p>2021</p>
-          <p class="weekday">星期五</p>
+          <p>{{ toDate.year() }}</p>
+          <p class="weekday">{{ getWeek }}</p>
         </div>
         <div class="date boxShadow">
-          <p class="date">10</p>
+          <p class="date">{{ toDate.month() + 1 }}</p>
         </div>
         <div class="date boxShadow">
-          <p class="date">20</p>
+          <p class="date">{{ toDate.date() }}</p>
         </div>
       </div>
       <table class="infoWrap">
@@ -28,44 +28,37 @@
       </table>
 
       <div class="totalWrap">
-        <div class="threeTotal">
+        <div class="threeTotal" v-for="item in inventoryArr" :key="item">
           <div class="textWrap">
-            <p>$676,200</p>
-            <p>庫存鈔票總金額</p>
+            <p>
+              {{ item === 'TNA' ? cashTotal : item === 'TCA' ? coinTotal : cashTotal + coinTotal }}
+            </p>
+            <p>{{ textMapping.getStatisticText(item) }}</p>
           </div>
           <div class="iconWrap">
-            <i class="fas fa-money-bill-wave"></i>
-          </div>
-        </div>
-        <div class="threeTotal">
-          <div class="textWrap">
-            <p>$676,200,200</p>
-            <p>庫存硬幣總金額</p>
-          </div>
-          <div class="iconWrap">
-            <i class="fas fa-coins"></i>
-          </div>
-        </div>
-
-        <div class="threeTotal">
-          <div class="textWrap">
-            <p>$6,200,200,200</p>
-            <p>庫存合計總金額</p>
-          </div>
-          <div class="iconWrap">
-            <i class="fas fa-dollar-sign"></i>
+            <i
+              class="fas"
+              :class="{
+                'fa-money-bill-wave': item === 'TNA',
+                'fa-coins': item === 'TCA',
+                'fa-dollar-sign': item === 'INVENTORY_SUM',
+              }"
+            ></i>
           </div>
         </div>
       </div>
     </div>
-    <!-- </div> -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import moment from 'moment';
+import textMapping from '@/data/textMapping';
 import Statistics from '@/components/Statistics.vue';
 import CassetteState from '@/components/CassetteState.vue';
+
+const formatter = new Intl.NumberFormat();
 
 export default {
   name: 'Home',
@@ -73,8 +66,11 @@ export default {
     Statistics,
     CassetteState,
   },
+  inject: ['inventoryData'],
   data() {
     return {
+      toDate: moment(),
+      week: moment().isoWeekday(),
       tcrInfos: [
         { title: 'TCR機台號', info: 'TCR14301' },
         { title: 'TCR櫃號', info: '9301' },
@@ -82,7 +78,19 @@ export default {
         { title: '分行系統狀態', info: '連線' },
         { title: 'TCR機台狀態', info: '正常' },
       ],
+      cashTotal: this.inventoryData.LParam.statisticData.TNA,
+      coinTotal: this.inventoryData.LParam.statisticData.TCA,
+      inventoryArr: ['TNA', 'TCA', 'INVENTORY_SUM'],
+      formatDollar: formatter,
     };
+  },
+  computed: {
+    getWeek() {
+      return textMapping.getWeek(this.week);
+    },
+    textMapping() {
+      return textMapping;
+    },
   },
 };
 </script>
