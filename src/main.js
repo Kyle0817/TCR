@@ -25,6 +25,81 @@ const inventoryData = {
         Cassette: 'B2', // 鈔箱
         Mode: 'D', // 模式
         Status: 'G', // 鈔箱水位狀態
+        Value: 600, // 張數
+        Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 500, // 面額
+            Value: 10, // 張數
+          },
+        //   {
+        //     Currency: 'TWD', // 貨幣
+        //     Denomination: 100, // 面額
+        //     Value: 50, // 張數
+        //   },
+        ],
+      },
+      {
+        Cassette: 'B3', // 鈔箱
+        Mode: 'M', // 模式
+        Status: 'L', // 鈔箱水位狀態
+        Value: 100, // 張數
+        Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 200, // 面額
+            Value: 20, // 張數
+          },
+        //   {
+        //     Currency: 'TWD', // 貨幣
+        //     Denomination: 100, // 面額
+        //     Value: 80, // 張數
+        //   },
+        ],
+      },
+      {
+        Cassette: 'B4', // 鈔箱
+        Mode: 'D', // 模式
+        Status: 'G', // 鈔箱水位狀態
+        Value: 100, // 張數
+        Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 500, // 面額
+            Value: 10, // 張數
+          },
+        ],
+      },
+      {
+        Cassette: 'B5', // 鈔箱
+        Mode: 'D', // 模式
+        Status: 'G', // 鈔箱水位狀態
+        Value: 100, // 張數
+        Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 500, // 面額
+            Value: 10, // 張數
+          },
+        ],
+      },
+      {
+        Cassette: 'B6', // 鈔箱
+        Mode: 'D', // 模式
+        Status: 'G', // 鈔箱水位狀態
+        Value: 100, // 張數
+        Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 500, // 面額
+            Value: 10, // 張數
+          },
+        ],
+      },
+      {
+        Cassette: 'B7', // 鈔箱
+        Mode: 'D', // 模式
+        Status: 'G', // 鈔箱水位狀態
         Value: 100, // 張數
         Inventory: [
           {

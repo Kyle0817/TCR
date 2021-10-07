@@ -51,7 +51,7 @@
           v-for="inventoryInside in item.Inventory"
           :key="inventoryInside.Denomination"
         >
-          {{ '$' + formatDollar.format(inventoryInside.Denomination * inventoryInside.Value) }}
+          ${{ formatDollar.format(inventoryInside.Denomination * inventoryInside.Value) }}
         </td>
       </tr>
     </tbody>

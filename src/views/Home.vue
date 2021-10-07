@@ -27,22 +27,13 @@
       </table>
 
       <div class="totalWrap">
-        <div class="threeTotal" v-for="item in inventoryArr" :key="item">
+        <div class="threeTotal" v-for="(item, key, index) in inventoryArr" :key="key">
           <div class="textWrap">
-            <p>
-              {{ item === 'TNA' ? cashTotal : item === 'TCA' ? coinTotal : cashTotal + coinTotal }}
-            </p>
-            <p>{{ textMapping.getStatisticText(item) }}</p>
+            <p>${{ formatDollar.format(item) }}</p>
+            <p>{{ textMapping.getStatisticText(key) }}</p>
           </div>
           <div class="iconWrap">
-            <i
-              class="fas"
-              :class="{
-                'fa-money-bill-wave': item === 'TNA',
-                'fa-coins': item === 'TCA',
-                'fa-dollar-sign': item === 'INVENTORY_SUM',
-              }"
-            ></i>
+            <i class="fas" :class="iconArr[index]"></i>
           </div>
         </div>
       </div>
@@ -77,10 +68,14 @@ export default {
         { title: '分行系統狀態', info: '連線' },
         { title: 'TCR機台狀態', info: '正常' },
       ],
-      cashTotal: this.inventoryData.LParam.statisticData.TNA,
-      coinTotal: this.inventoryData.LParam.statisticData.TCA,
-      inventoryArr: ['TNA', 'TCA', 'INVENTORY_SUM'],
       formatDollar: formatter,
+      inventoryArr: {
+        TNA: this.inventoryData.LParam.statisticData.TNA,
+        TCA: this.inventoryData.LParam.statisticData.TCA,
+        INVENTORY_SUM:
+          this.inventoryData.LParam.statisticData.TNA + this.inventoryData.LParam.statisticData.TCA,
+      },
+      iconArr: ['fa-money-bill-wave', 'fa-coins', 'fa-dollar-sign'],
     };
   },
   computed: {

@@ -8,7 +8,7 @@
       <tr v-for="(value, key) in statisticsItem" :key="value">
         <td>{{ getWorkItemKey.getItemKey(key) }}</td>
         <td class="number">
-          {{ '$' + formatDollar.format(value) }}
+          ${{ formatDollar.format(value) }}
         </td>
       </tr>
     </tbody>
