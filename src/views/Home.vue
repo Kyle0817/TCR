@@ -1,13 +1,12 @@
 <template>
   <div class="home">
-    <!-- <div class="row"> -->
-    <div class="main col-9">
+    <div class="main">
       <Statistics />
       <div>
         <CassetteState />
       </div>
     </div>
-    <div class="sideInfoWrap col-3">
+    <div class="sideInfoWrap">
       <div class="calendar">
         <div class="date boxShadow">
           <p>{{ toDate.year() }}</p>
