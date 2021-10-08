@@ -1,6 +1,6 @@
 table {
   font-family: "Noto Sans TC", sans-serif;
-  // border: 1px solid black;
+  width: 100%;
   th {
     font-size: 18px;
     font-weight: 500;
@@ -19,8 +19,8 @@ table {
     &:nth-child(even) {
       background-color: $white;
     }
-    &:nth-child(5) {
-      border-bottom: 2px solid $thirdColor;
+    &:hover {
+      background-color: $fourthColor;
     }
     td {
       padding: 6px 10px;

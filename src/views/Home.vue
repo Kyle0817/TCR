@@ -1,9 +1,23 @@
 <template>
   <div class="home">
     <div class="main">
-      <Statistics />
-      <div>
-        <CassetteState />
+      <div class="top row">
+        <div class="col whiteBox outBox">
+          <h1>統計資料</h1>
+          <h3>上次營業日:{{ lastDate }}</h3>
+          <Statistics />
+        </div>
+        <div class="col secondBox outBox">
+          <h1>今日統計資料</h1>
+          <Statistics />
+        </div>
+      </div>
+      <div class="bottom row">
+        <div class="whiteBox outBox col">
+          <h1>鈔箱狀態</h1>
+          <Tag :straight="straight" />
+          <CassetteState />
+        </div>
       </div>
     </div>
     <div class="sideInfoWrap">
@@ -47,6 +61,7 @@ import moment from 'moment';
 import textMapping from '@/data/textMapping';
 import Statistics from '@/components/Statistics.vue';
 import CassetteState from '@/components/CassetteState.vue';
+import Tag from '@/components/public/Tag.vue';
 
 const formatter = new Intl.NumberFormat();
 
@@ -55,10 +70,13 @@ export default {
   components: {
     Statistics,
     CassetteState,
+    Tag,
   },
   inject: ['inventoryData'],
   data() {
     return {
+      straight: true,
+      lastDate: '2021/09/28',
       toDate: moment(),
       week: moment().isoWeekday(),
       tcrInfos: [

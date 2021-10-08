@@ -16,6 +16,7 @@ module.exports = {
       scss: {
         prependData: `
            @import "~@/assets/public/scss/variables.scss";
+           @import "~@/assets/public/scss/_main.scss";
         `
       }
     }

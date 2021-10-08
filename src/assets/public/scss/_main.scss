@@ -6,6 +6,34 @@ body {
   background-color: $body;
   min-width: 1024px;
 }
+h1 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.outBox {
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px;
+  box-shadow: 1px 1px 10px rgba(114, 114, 114, 0.3);
+  &.whiteBox {
+    background-color: $white;
+  }
+  &.secondBox {
+    background-color: $secondColor;
+    h1 {
+      color: $white;
+    }
+  }
+}
+
 .boxShadow {
   box-shadow: 1px 1px 10px rgba(114, 114, 114, 0.3);
 }
