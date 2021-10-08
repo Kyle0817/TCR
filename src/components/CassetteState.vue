@@ -12,19 +12,15 @@
         <th>庫存數</th>
         <th>總額</th>
       </tr>
-      <tr v-for="item in inventory" :key="item.Cassette">
+      <tr v-for="(item, index) in inventory" :key="index">
         <td>{{ item.Cassette }}</td>
         <td>
           {{
             item.Mode ? mode.getMode(item.Mode) : item.Cassette === 'BR' ? '鈔票回收' : '硬幣回收'
           }}
         </td>
-        <td
-          class="number"
-          v-for="inventoryInside in item.Inventory"
-          :key="inventoryInside.Denomination"
-        >
-          {{ inventoryInside.Denomination }}
+        <td class="number">
+          {{ item.Denomination }}
         </td>
         <td>
           <div
@@ -39,20 +35,10 @@
             <p>{{ item.Status }}</p>
           </div>
         </td>
-        <td
-          class="number"
-          v-for="inventoryInside in item.Inventory"
-          :key="inventoryInside.Denomination"
-        >
-          {{ inventoryInside.Value }}
+        <td class="number">
+          {{ item.Value }}
         </td>
-        <td
-          class="number"
-          v-for="inventoryInside in item.Inventory"
-          :key="inventoryInside.Denomination"
-        >
-          ${{ formatDollar.format(inventoryInside.Denomination * inventoryInside.Value) }}
-        </td>
+        <td class="number">${{ formatDollar.format(item.Denomination * item.Value) }}</td>
       </tr>
     </tbody>
   </table>
@@ -84,20 +70,32 @@ export default {
       this.inventoryData.LParam.INVENTORY.forEach((item) => {
         switch (true) {
           case item.Cassette.startsWith('B') && !item.Cassette.includes('R'):
-            this.cashBox.push(item);
+            this.inventoryLoop(item, this.cashBox);
             break;
           case item.Cassette.startsWith('C') && !item.Cassette.includes('R'):
-            this.coinBox.push(item);
+            this.inventoryLoop(item, this.coinBox);
             break;
           case item.Cassette.includes('R'):
-            this.recycleBox.push(item);
+            this.inventoryLoop(item, this.recycleBox);
             break;
           default:
         }
       });
     },
+    inventoryLoop(item, box) {
+      item.Inventory.forEach((inventory) => {
+        box.push({
+          Cassette: item.Cassette,
+          Mode: item.Mode,
+          Denomination: inventory.Denomination,
+          Status: item.Status,
+          Value: inventory.Value,
+          Total: inventory.Denomination * inventory.Value,
+        });
+      });
+    },
   },
-  mounted() {
+  created() {
     this.tcrClassification();
     this.inventory = this.cashBox;
   },

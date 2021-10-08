@@ -25,18 +25,23 @@ const inventoryData = {
         Cassette: 'B2', // 鈔箱
         Mode: 'D', // 模式
         Status: 'G', // 鈔箱水位狀態
-        Value: 600, // 張數
+        Value: 160, // 張數
         Inventory: [
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 1000, // 面額
+            Value: 100, // 張數
+          },
           {
             Currency: 'TWD', // 貨幣
             Denomination: 500, // 面額
             Value: 10, // 張數
           },
-        //   {
-        //     Currency: 'TWD', // 貨幣
-        //     Denomination: 100, // 面額
-        //     Value: 50, // 張數
-        //   },
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 100, // 面額
+            Value: 50, // 張數
+          },
         ],
       },
       {
@@ -50,11 +55,11 @@ const inventoryData = {
             Denomination: 200, // 面額
             Value: 20, // 張數
           },
-        //   {
-        //     Currency: 'TWD', // 貨幣
-        //     Denomination: 100, // 面額
-        //     Value: 80, // 張數
-        //   },
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 100, // 面額
+            Value: 80, // 張數
+          },
         ],
       },
       {
@@ -100,12 +105,22 @@ const inventoryData = {
         Cassette: 'B7', // 鈔箱
         Mode: 'D', // 模式
         Status: 'G', // 鈔箱水位狀態
-        Value: 100, // 張數
+        Value: 200, // 張數
         Inventory: [
           {
             Currency: 'TWD', // 貨幣
             Denomination: 500, // 面額
-            Value: 10, // 張數
+            Value: 80, // 張數
+          },
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 200, // 面額
+            Value: 20, // 張數
+          },
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 100, // 面額
+            Value: 100, // 張數
           },
         ],
       },
@@ -117,8 +132,18 @@ const inventoryData = {
         Inventory: [
           {
             Currency: 'TWD', // 貨幣
+            Denomination: 5, // 面額
+            Value: 10, // 張數
+          },
+          {
+            Currency: 'TWD', // 貨幣
             Denomination: 10, // 面額
             Value: 20, // 張數
+          },
+          {
+            Currency: 'TWD', // 貨幣
+            Denomination: 50, // 面額
+            Value: 15, // 張數
           },
         ],
       },
