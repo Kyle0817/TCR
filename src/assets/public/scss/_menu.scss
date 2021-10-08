@@ -17,16 +17,20 @@ div.menuBg {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    li {
+    li.outLi {
       // border: 1px solid wheat;
-      overflow: hidden;
+      // overflow: hidden;
       padding: 15px 5px;
       border-radius: 25px;
       cursor: pointer;
+      position: relative;
+      transition: 0.3s;
       &:hover {
         background-color: $white;
         color: $secondColor;
-        transition: 0.3s;
+        .tooltip {
+          display: block;
+        }
       }
 
       &:first-child {
@@ -46,7 +50,6 @@ div.menuBg {
         }
       }
       i {
-        // border: 1px solid black;
         font-size: 30px;
       }
       p {
@@ -54,7 +57,52 @@ div.menuBg {
         font-size: 18px;
       }
       .tooltip {
+        // border: 1px solid black;
+        position: absolute;
+        left: 42px;
+        top: -10px;
+        padding-left: 17px;
+        color: $white;
         display: none;
+        // color: $black;
+
+        ul.inUl {
+          border-radius: 10px;
+          background-color: $thirdColor;
+          padding: 10px 8px;
+          position: relative;
+          width: max-content;
+          &::after {
+            content: " ";
+            position: absolute;
+            top: 50px;
+            right: 100%; /* To the left of the tooltip */
+            margin-top: -10px;
+            border-width: 10px;
+            border-style: solid;
+            border-color: transparent $thirdColor transparent transparent;
+          }
+          li {
+            text-align: left;
+            padding: 8px 28px;
+            margin: 5px 0;
+            position: relative;
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0px;
+              background-color: $white;
+              width: 15px;
+              height: 15px;
+              top: 9px;
+              border-radius: 50%;
+              display: none;
+            }
+            &:hover::before {
+              display: block;
+            }
+          }
+        }
       }
     }
   }
