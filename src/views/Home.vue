@@ -43,7 +43,7 @@
       <div class="totalWrap">
         <div class="threeTotal" v-for="(item, key, index) in inventoryArr" :key="key">
           <div class="textWrap">
-            <p>${{ formatDollar.format(item) }}</p>
+            <h1>${{ formatDollar.format(item) }}</h1>
             <p>{{ textMapping.getStatisticText(key) }}</p>
           </div>
           <div class="iconWrap">

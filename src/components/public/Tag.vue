@@ -41,7 +41,7 @@ export default {
   left: 30px;
   &.straight {
     top: 20px;
-    left: -42px;
+    left: -43px;
     flex-direction: column;
   }
 
@@ -72,7 +72,7 @@ export default {
     }
     &.straight {
       writing-mode: vertical-rl;
-      padding: 15px 10px 15px 14px;
+      padding: 15px 6px 15px 15px;
       margin-top: 20px;
       &::after {
         border-radius: 10px 0 0 10px;
