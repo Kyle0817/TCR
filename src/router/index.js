@@ -4,6 +4,8 @@ import Menu from '@/components/public/Menu.vue';
 import Hamburger from '@/components/public/Hamburger.vue';
 import Header from '@/components/public/Header.vue';
 
+const signIn = () => import(/* webpackChunkName: "signIn" */ '../views/SignIn.vue');
+
 const routes = [
   {
     path: '/',
@@ -16,12 +18,12 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: 'About',
+    path: '/signIn',
+    name: 'SignIn',
+    component: signIn,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
 ];
 
