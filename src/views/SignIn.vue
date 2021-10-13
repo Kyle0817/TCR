@@ -8,11 +8,11 @@
       </div>
       <div class="textWrap">
         <img :src="imgSrc" alt="logo" />
-        <form>
+        <form @submit.prevent="login">
           <label for="">員工編號:</label>
-          <input type="text" />
+          <input type="text" v-model.trim="employeeID" />
           <label for="">密碼:</label>
-          <input type="text" />
+          <input type="password" v-model.trim="password" />
           <button type="submit" class="firstBtn">登入</button>
         </form>
       </div>
@@ -26,7 +26,17 @@ export default {
   data() {
     return {
       imgSrc: src,
+      employeeID: '',
+      password: '',
     };
+  },
+  methods: {
+    login() {
+      if (this.employeeID && this.password) {
+        sessionStorage.setItem('userNum', this.employeeID);
+        this.$router.push('/');
+      }
+    },
   },
 };
 </script>

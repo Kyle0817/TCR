@@ -23,7 +23,7 @@ const src = require('@/assets/img/long-logo.png');
 export default {
   data() {
     return {
-      userNum: 'S47123',
+      userNum: sessionStorage.getItem('userNum'),
       flag: true,
       imgSrc: src,
     };
@@ -32,6 +32,8 @@ export default {
     logout() {
       this.userNum = '';
       this.flag = false;
+      sessionStorage.removeItem('userNum');
+      this.$router.push('/signIn');
     },
   },
 };
