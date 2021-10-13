@@ -11,8 +11,8 @@
       </span>
     </button>
     <div class="infoWrap">
-      <Tag />
-      <CassetteState />
+      <Tag @selectBox="clickBox" />
+      <CassetteState :tag-boxName="tagBoxName" :inventory-data="inventoryData.LParam.INVENTORY" />
     </div>
   </div>
 </template>
@@ -21,15 +21,20 @@ import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
 
 export default {
+  inject: ['inventoryData'],
   components: { CassetteState, Tag },
   data() {
     return {
+      tagBoxName: '',
       isActive: false,
     };
   },
   methods: {
     slideOut() {
       this.isActive = !this.isActive;
+    },
+    clickBox(box) {
+      this.tagBoxName = box;
     },
   },
 };

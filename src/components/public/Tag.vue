@@ -28,6 +28,7 @@ export default {
   methods: {
     select(box) {
       this.box = box;
+      this.$emit('selectBox', this.box);
     },
   },
 };

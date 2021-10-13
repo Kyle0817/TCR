@@ -23,7 +23,7 @@ const inventoryData = {
       },
       {
         Cassette: 'B2', // 鈔箱
-        Mode: 'D', // 模式
+        Mode: 'R', // 模式
         Status: 'G', // 鈔箱水位狀態
         Value: 160, // 張數
         Inventory: [
@@ -65,13 +65,13 @@ const inventoryData = {
       {
         Cassette: 'B4', // 鈔箱
         Mode: 'D', // 模式
-        Status: 'G', // 鈔箱水位狀態
+        Status: 'H', // 鈔箱水位狀態
         Value: 100, // 張數
         Inventory: [
           {
             Currency: 'TWD', // 貨幣
-            Denomination: 500, // 面額
-            Value: 10, // 張數
+            Denomination: 1000, // 面額
+            Value: 100, // 張數
           },
         ],
       },
@@ -79,7 +79,7 @@ const inventoryData = {
         Cassette: 'B5', // 鈔箱
         Mode: 'D', // 模式
         Status: 'G', // 鈔箱水位狀態
-        Value: 100, // 張數
+        Value: 10, // 張數
         Inventory: [
           {
             Currency: 'TWD', // 貨幣
@@ -96,14 +96,14 @@ const inventoryData = {
         Inventory: [
           {
             Currency: 'TWD', // 貨幣
-            Denomination: 500, // 面額
+            Denomination: 100, // 面額
             Value: 10, // 張數
           },
         ],
       },
       {
         Cassette: 'B7', // 鈔箱
-        Mode: 'D', // 模式
+        Mode: 'P', // 模式
         Status: 'G', // 鈔箱水位狀態
         Value: 200, // 張數
         Inventory: [
@@ -187,7 +187,7 @@ const inventoryData = {
         ],
       },
     ],
-    statisticData: {
+    STATISTIC1: {
       Date: '20210924',
       TNA: 50000000,
       TND: 600, // 提鈔
@@ -203,6 +203,23 @@ const inventoryData = {
       TCT2: 2,
       TCU: 3451, // 卸幣
       TCL: 0, // 補幣
+    },
+    STATISTIC2: {
+      Date: '20210927',
+      TNA: 30000000,
+      TND: 500, // 提鈔
+      TNT: 1,
+      TND2: 2340700, // 存鈔
+      TNT2: 14,
+      TNU: 1922000, // 卸鈔
+      TNL: 20000, // 補鈔
+      TCA: 10000000,
+      TCD: 86, // 提幣
+      TCT: 3,
+      TCD2: 256, // 存幣
+      TCT2: 2,
+      TCU: 345, // 卸幣
+      TCL: 100, // 補幣
     },
   },
 };

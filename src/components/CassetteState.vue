@@ -1,7 +1,4 @@
 <template>
-  <button type="button" @click="inventory = cashBox">鈔箱</button>
-  <button type="button" @click="inventory = coinBox">硬幣盒</button>
-  <button type="button" @click="inventory = recycleBox">回收盒</button>
   <table>
     <tbody>
       <tr>
@@ -50,7 +47,14 @@ import textMapping from '@/data/textMapping';
 const formatter = new Intl.NumberFormat();
 
 export default {
-  inject: ['inventoryData'],
+  props: {
+    tagBoxName: {
+      type: String,
+    },
+    inventoryData: {
+      type: Array,
+    },
+  },
   data() {
     return {
       cashBox: [], // 鈔箱
@@ -67,7 +71,7 @@ export default {
   },
   methods: {
     tcrClassification() {
-      this.inventoryData.LParam.INVENTORY.forEach((item) => {
+      this.inventoryData.forEach((item) => {
         switch (true) {
           case item.Cassette.startsWith('B') && !item.Cassette.includes('R'):
             this.inventoryLoop(item, this.cashBox);
@@ -96,8 +100,18 @@ export default {
     },
   },
   created() {
+    console.log(this.inventoryData);
     this.tcrClassification();
+  },
+  mounted() {
+    // console.log(this.inventoryData);
+    console.log(this.cashBox);
     this.inventory = this.cashBox;
+  },
+  updated() {
+    if (this.tagBoxName === '鈔箱盒') this.inventory = this.cashBox;
+    else if (this.tagBoxName === '硬幣盒') this.inventory = this.coinBox;
+    else this.inventory = this.recycleBox;
   },
 };
 </script>

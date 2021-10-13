@@ -4,19 +4,22 @@
       <div class="top row">
         <div class="col whiteBox outBox">
           <h1>統計資料</h1>
-          <h3>上次營業日:{{ lastDate }}</h3>
-          <Statistics />
+          <h3>上次營業日:{{ date.format('yyyy/MM/DD') }}</h3>
+          <Statistics :statistics="statistic1" />
         </div>
         <div class="col secondBox outBox">
           <h1>今日統計資料</h1>
-          <Statistics />
+          <Statistics :statistics="statistic2" />
         </div>
       </div>
       <div class="bottom row">
         <div class="whiteBox outBox col">
           <h1>鈔箱狀態</h1>
-          <Tag :straight="straight" />
-          <CassetteState />
+          <Tag :straight="straight" @selectBox="clickBox" />
+          <CassetteState
+            :tag-boxName="tagBoxName"
+            :inventory-data="inventoryData.LParam.INVENTORY"
+          />
         </div>
       </div>
     </div>
@@ -76,9 +79,10 @@ export default {
   data() {
     return {
       straight: true,
-      lastDate: '2021/09/28',
       toDate: moment(),
       week: moment().isoWeekday(),
+      tagBoxName: '',
+      date: moment(this.inventoryData.LParam.STATISTIC1.Date), // 上次營業日
       tcrInfos: [
         { title: 'TCR機台號', info: 'TCR14301' },
         { title: 'TCR櫃號', info: '9301' },
@@ -86,14 +90,36 @@ export default {
         { title: '分行系統狀態', info: '連線' },
         { title: 'TCR機台狀態', info: '正常' },
       ],
-      formatDollar: formatter,
-      inventoryArr: {
-        TNA: this.inventoryData.LParam.statisticData.TNA,
-        TCA: this.inventoryData.LParam.statisticData.TCA,
-        INVENTORY_SUM:
-          this.inventoryData.LParam.statisticData.TNA + this.inventoryData.LParam.statisticData.TCA,
+      // 上次營業日統計資料
+      statistic1: {
+        TND: this.inventoryData.LParam.STATISTIC1.TNA,
+        TND2: this.inventoryData.LParam.STATISTIC1.TND2,
+        TNL: this.inventoryData.LParam.STATISTIC1.TNL,
+        TNU: this.inventoryData.LParam.STATISTIC1.TNU,
+        TCD: this.inventoryData.LParam.STATISTIC1.TCD,
+        TCD2: this.inventoryData.LParam.STATISTIC1.TCD2,
+        TCL: this.inventoryData.LParam.STATISTIC1.TNL,
+        TCU: this.inventoryData.LParam.STATISTIC1.TCU,
       },
-      iconArr: ['fa-money-bill-wave', 'fa-coins', 'fa-dollar-sign'],
+      // 今日統計資料
+      statistic2: {
+        TND: this.inventoryData.LParam.STATISTIC2.TNA,
+        TND2: this.inventoryData.LParam.STATISTIC2.TND2,
+        TNL: this.inventoryData.LParam.STATISTIC2.TNL,
+        TNU: this.inventoryData.LParam.STATISTIC2.TNU,
+        TCD: this.inventoryData.LParam.STATISTIC2.TCD,
+        TCD2: this.inventoryData.LParam.STATISTIC2.TCD2,
+        TCL: this.inventoryData.LParam.STATISTIC2.TNL,
+        TCU: this.inventoryData.LParam.STATISTIC2.TCU,
+      },
+      inventoryArr: {
+        TNA: this.inventoryData.LParam.STATISTIC2.TNA,
+        TCA: this.inventoryData.LParam.STATISTIC2.TCA,
+        INVENTORY_SUM:
+          this.inventoryData.LParam.STATISTIC2.TNA + this.inventoryData.LParam.STATISTIC2.TCA,
+      },
+      iconArr: ['fa-money-bill-wave', 'fa-coins', 'fa-dollar-sign'], // 庫存總金額icon
+      formatDollar: formatter,
     };
   },
   computed: {
@@ -102,6 +128,11 @@ export default {
     },
     textMapping() {
       return textMapping;
+    },
+  },
+  methods: {
+    clickBox(box) {
+      this.tagBoxName = box;
     },
   },
 };
