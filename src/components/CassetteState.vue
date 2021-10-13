@@ -99,13 +99,8 @@ export default {
       });
     },
   },
-  created() {
-    console.log(this.inventoryData);
-    this.tcrClassification();
-  },
   mounted() {
-    // console.log(this.inventoryData);
-    console.log(this.cashBox);
+    this.tcrClassification();
     this.inventory = this.cashBox;
   },
   updated() {

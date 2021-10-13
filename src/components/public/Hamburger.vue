@@ -25,7 +25,7 @@ export default {
   components: { CassetteState, Tag },
   data() {
     return {
-      tagBoxName: '',
+      tagBoxName: '鈔箱盒',
       isActive: false,
     };
   },

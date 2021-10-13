@@ -81,7 +81,7 @@ export default {
       straight: true,
       toDate: moment(),
       week: moment().isoWeekday(),
-      tagBoxName: '',
+      tagBoxName: '鈔箱盒',
       date: moment(this.inventoryData.LParam.STATISTIC1.Date), // 上次營業日
       tcrInfos: [
         { title: 'TCR機台號', info: 'TCR14301' },
