@@ -34,7 +34,7 @@ export default {
     login() {
       if (this.employeeID && this.password) {
         sessionStorage.setItem('userNum', this.employeeID);
-        this.$router.push('/');
+        this.$router.push('/home');
       }
     },
   },

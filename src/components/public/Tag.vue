@@ -61,7 +61,7 @@ export default {
       bottom: 0;
       background-color: $fourthColor;
       border-radius: 10px 10px 0 0;
-      box-shadow: 2px -3px 5px rgba(114, 114, 114, 0.3);
+      box-shadow: 2px -3px 5px rgba(114, 114, 114, 0.2);
       transform: perspective(10px) scale(1.1, 1.3) rotateX(5deg);
       z-index: -1;
     }
@@ -77,7 +77,7 @@ export default {
       margin-top: 20px;
       &::after {
         border-radius: 10px 0 0 10px;
-        box-shadow: -2px 3px 5px rgba(114, 114, 114, 0.3);
+        box-shadow: -2px 3px 5px rgba(114, 114, 114, 0.2);
         transform: perspective(10px) scale(1.1, 1.3) rotateY(-5deg);
       }
     }

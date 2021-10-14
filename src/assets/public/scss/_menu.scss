@@ -17,6 +17,12 @@ div.menuBg {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    &.trade .trade,
+    &.maintain .maintain,
+    &.search .search {
+      background-color: $white;
+      color: $secondColor;
+    }
     li.outLi {
       // border: 1px solid wheat;
       // overflow: hidden;
@@ -32,7 +38,6 @@ div.menuBg {
           display: block;
         }
       }
-
       &:first-child {
         padding: 0px;
         a {
@@ -42,7 +47,8 @@ div.menuBg {
           text-decoration: none;
           color: $white;
           border-radius: 25px;
-          &:hover {
+          &:hover,
+          &.router-link-active {
             background-color: $white;
             color: $secondColor;
             transition: 0.3s;
@@ -64,7 +70,6 @@ div.menuBg {
         padding-left: 17px;
         color: $white;
         display: none;
-        // color: $black;
 
         ul.inUl {
           border-radius: 10px;
@@ -76,7 +81,7 @@ div.menuBg {
             content: " ";
             position: absolute;
             top: 50px;
-            right: 100%; /* To the left of the tooltip */
+            right: 100%;
             margin-top: -10px;
             border-width: 10px;
             border-style: solid;
@@ -84,22 +89,30 @@ div.menuBg {
           }
           li {
             text-align: left;
-            padding: 8px 28px;
+            display: block;
             margin: 5px 0;
-            position: relative;
-            &::before {
-              content: "";
-              position: absolute;
-              left: 0px;
-              background-color: $white;
-              width: 15px;
-              height: 15px;
-              top: 9px;
-              border-radius: 50%;
-              display: none;
-            }
-            &:hover::before {
-              display: block;
+            a {
+              position: relative;
+              display: inline-block;
+              text-decoration: none;
+              color: $white;
+              width: 100%;
+              padding: 8px 28px;
+              &::before {
+                content: "";
+                position: absolute;
+                left: 0px;
+                background-color: $white;
+                width: 15px;
+                height: 15px;
+                top: 9px;
+                border-radius: 50%;
+                display: none;
+              }
+              &:hover::before,
+              &.router-link-active::before {
+                display: block;
+              }
             }
           }
         }

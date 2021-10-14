@@ -2,12 +2,7 @@
   <table>
     <tbody>
       <tr>
-        <th>鈔箱</th>
-        <th>模式</th>
-        <th>面額</th>
-        <th>狀態</th>
-        <th>庫存數</th>
-        <th>總額</th>
+        <th v-for="item in th" :key="item">{{ item }}</th>
       </tr>
       <tr v-for="(item, index) in inventory" :key="index">
         <td>{{ item.Cassette }}</td>
@@ -48,6 +43,9 @@ const formatter = new Intl.NumberFormat();
 
 export default {
   props: {
+    th: {
+      type: Array,
+    },
     tagBoxName: {
       type: String,
     },

@@ -1,20 +1,24 @@
 <template>
   <div class="menuBg">
-    <ul class="outUl">
-      <li class="outLi">
-        <router-link to="/">
+    <ul class="outUl" :class="active">
+      <li class="outLi home">
+        <router-link to="/home" @click="activeRouter('home')">
           <i class="fas fa-home"></i>
           <p>首頁</p>
         </router-link>
       </li>
-      <li class="outLi" v-for="list in lists" :key="list.title">
+      <li class="outLi" v-for="list in lists" :key="list.title" :class="list.router">
         <div>
           <i class="fas" :class="list.class"></i>
           <p>{{ list.title }}</p>
         </div>
         <div class="tooltip">
           <ul class="boxShadow inUl">
-            <li v-for="li in list.li" :key="li">{{ li }}</li>
+            <li v-for="li in list.li" :key="li.title">
+              <router-link :to="{ name: li.link }" @click="activeRouter(list.router)">
+                {{ li.title }}</router-link
+              >
+            </li>
           </ul>
         </div>
       </li>
@@ -25,24 +29,92 @@
 export default {
   data() {
     return {
+      active: 'home',
       lists: [
         {
           title: '交易',
           class: 'fa-cash-register',
-          li: ['存款', '提款', '繳費', '兌換', '點鈔'],
+          router: 'trade',
+          li: [
+            {
+              title: '存款',
+              link: 'Deposit',
+            },
+            {
+              title: '提款',
+              link: 'Withdrawal',
+            },
+            {
+              title: '繳費',
+              link: 'Pay',
+            },
+            {
+              title: '兌換',
+              link: 'Exchange',
+            },
+            {
+              title: '點鈔',
+              link: 'Counting',
+            },
+          ],
         },
         {
           title: '維護',
           class: 'fa-toolbox',
-          li: ['補鈔', '補幣', '卸鈔', '卸幣', '鈔箱更換', '幣筒更換', '鈔箱設定'],
+          router: 'maintain',
+          li: [
+            {
+              title: '補鈔',
+              link: 'ReplenishCash',
+            },
+            {
+              title: '補幣',
+              link: 'ReplenishCoin',
+            },
+            {
+              title: '卸鈔',
+              link: 'UnloadCash',
+            },
+            {
+              title: '卸幣',
+              link: 'UnloadCoin',
+            },
+            {
+              title: '鈔箱更換',
+              link: 'ChangeCash',
+            },
+            {
+              title: '幣筒更換',
+              link: 'ChangeCoin',
+            },
+            {
+              title: '鈔箱設定',
+              link: 'Setting',
+            },
+          ],
         },
         {
           title: '查詢',
           class: 'fa-search-dollar',
-          li: ['鈔箱詳細狀態', '交易紀錄'],
+          router: 'search',
+          li: [
+            {
+              title: '鈔箱詳細狀態',
+              link: 'DetailInfo',
+            },
+            {
+              title: '交易紀錄',
+              link: 'Record',
+            },
+          ],
         },
       ],
     };
+  },
+  methods: {
+    activeRouter(item) {
+      this.active = item;
+    },
   },
 };
 </script>

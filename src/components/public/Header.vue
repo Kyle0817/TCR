@@ -33,7 +33,7 @@ export default {
       this.userNum = '';
       this.flag = false;
       sessionStorage.removeItem('userNum');
-      this.$router.push('/signIn');
+      this.$router.push('/');
     },
   },
 };

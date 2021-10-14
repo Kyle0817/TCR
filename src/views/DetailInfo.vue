@@ -1,16 +1,7 @@
 <template>
-  <div class="hamburgerWrap" :class="{ 'is-active': isActive }">
-    <button
-      type="button"
-      class="btn hamburger hamburger--arrow"
-      :class="{ 'is-active': isActive }"
-      @click="slideOut"
-    >
-      <span class="hamburger-box">
-        <span class="hamburger-inner"></span>
-      </span>
-    </button>
-    <div class="infoWrap">
+  <div class="detailInfo view row">
+    <h1>鈔箱詳細狀態</h1>
+    <div class="whiteBox outBox wrap">
       <Tag @selectBox="clickBox" />
       <CassetteState
         :th="tableTh"
@@ -30,14 +21,22 @@ export default {
   data() {
     return {
       tagBoxName: '鈔箱盒',
-      isActive: false,
-      tableTh: ['鈔箱', '模式', '面額', '狀態', '庫存數', '總額'],
+      tableTh: [
+        '鈔箱',
+        '模式',
+        '面額',
+        '補鈔數',
+        '卸鈔數',
+        '存款數',
+        '提款數',
+        '吐拒數',
+        '狀態',
+        '庫存數',
+        '總額',
+      ],
     };
   },
   methods: {
-    slideOut() {
-      this.isActive = !this.isActive;
-    },
     clickBox(box) {
       this.tagBoxName = box;
     },
@@ -45,6 +44,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import '@/assets/public/scss/_hamburger.scss';
-@import '../../assets/vendors/css/hamburgers.css';
+h1 {
+  margin-top: 20px;
+  text-align: center;
+}
+.wrap {
+  margin-top: 60px;
+  position: relative;
+}
 </style>
