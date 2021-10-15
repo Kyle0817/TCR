@@ -5,7 +5,6 @@ import Header from '@/components/public/Header.vue';
 import SignIn from '../views/SignIn.vue';
 
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue');
-const detailInfo = () => import(/* webpackChunkName: "search" */ '../views/DetailInfo.vue');
 const Record = () => import(/* webpackChunkName: "search" */ '../views/Record.vue');
 const routes = [
   {
@@ -138,16 +137,6 @@ const routes = [
     name: 'Setting',
     components: {
       default: Home,
-      Menu,
-      Hamburger,
-      Header,
-    },
-  },
-  {
-    path: '/detailInfo',
-    name: 'DetailInfo',
-    components: {
-      default: detailInfo,
       Menu,
       Hamburger,
       Header,

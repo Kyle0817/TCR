@@ -99,10 +99,6 @@ export default {
           router: 'search',
           li: [
             {
-              title: '鈔箱詳細狀態',
-              link: 'DetailInfo',
-            },
-            {
               title: '交易紀錄',
               link: 'Record',
             },

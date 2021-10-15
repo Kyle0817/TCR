@@ -91,7 +91,7 @@ export default {
         { title: '分行系統狀態', info: '連線' },
         { title: 'TCR機台狀態', info: '正常' },
       ],
-      tableTh: ['鈔箱', '模式', '面額', '狀態', '庫存數', '總額'],
+      tableTh: ['鈔箱', '面額', '補鈔數', '卸鈔數', '存款數', '提款數', '吐拒數'],
       // 上次營業日統計資料
       statistic1: {
         TND: this.inventoryData.LParam.STATISTIC1.TNA,

@@ -11,6 +11,7 @@
       </span>
     </button>
     <div class="infoWrap">
+      <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
       <CassetteState
         :th="tableTh"
