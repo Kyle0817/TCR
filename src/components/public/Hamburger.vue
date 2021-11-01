@@ -1,11 +1,6 @@
 <template>
   <div class="hamburgerWrap" :class="{ 'is-active': isActive }">
-    <button
-      type="button"
-      class="btn hamburger hamburger--arrow"
-      :class="{ 'is-active': isActive }"
-      @click="slideOut"
-    >
+    <button type="button" class="btn hamburger hamburger--arrow" :class="{ 'is-active': isActive }" @click="slideOut">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -13,11 +8,7 @@
     <div class="infoWrap">
       <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
-      <CassetteState
-        :th="tableTh"
-        :tag-boxName="tagBoxName"
-        :inventory-data="inventoryData.LParam.INVENTORY"
-      />
+      <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.LParam.INVENTORY" />
     </div>
   </div>
 </template>

@@ -16,11 +16,7 @@
         <div class="whiteBox outBox col">
           <h1>鈔箱狀態</h1>
           <Tag :straight="straight" @selectBox="clickBox" />
-          <CassetteState
-            :tag-boxName="tagBoxName"
-            :th="tableTh"
-            :inventory-data="inventoryData.LParam.INVENTORY"
-          />
+          <CassetteState :home="true" :tag-boxName="tagBoxName" :th="tableTh" :tcrData="inventoryData.LParam.HISTORY" />
         </div>
       </div>
     </div>
@@ -117,8 +113,7 @@ export default {
       inventoryArr: {
         TNA: this.inventoryData.LParam.STATISTIC2.TNA,
         TCA: this.inventoryData.LParam.STATISTIC2.TCA,
-        INVENTORY_SUM:
-          this.inventoryData.LParam.STATISTIC2.TNA + this.inventoryData.LParam.STATISTIC2.TCA,
+        INVENTORY_SUM: this.inventoryData.LParam.STATISTIC2.TNA + this.inventoryData.LParam.STATISTIC2.TCA,
       },
       iconArr: ['fa-money-bill-wave', 'fa-coins', 'fa-dollar-sign'], // 庫存總金額icon
       formatDollar: formatter,
