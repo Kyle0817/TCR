@@ -47,7 +47,7 @@
             <p>{{ textMapping.getStatisticText(key) }}</p>
           </div>
           <div class="iconWrap">
-            <i class="fas" :class="iconArr[index]"></i>
+            <font-awesome-icon :icon="iconArr[index]" />
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ export default {
         TCA: this.inventoryData.LParam.STATISTIC2.TCA,
         INVENTORY_SUM: this.inventoryData.LParam.STATISTIC2.TNA + this.inventoryData.LParam.STATISTIC2.TCA,
       },
-      iconArr: ['fa-money-bill-wave', 'fa-coins', 'fa-dollar-sign'], // 庫存總金額icon
+      iconArr: ['money-bill-wave', 'coins', 'dollar-sign'], // 庫存總金額icon
       formatDollar: formatter,
     };
   },

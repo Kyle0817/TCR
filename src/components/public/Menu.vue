@@ -3,21 +3,19 @@
     <ul class="outUl" :class="active">
       <li class="outLi home">
         <router-link to="/home" @click="activeRouter('home')">
-          <i class="fas fa-home"></i>
+          <font-awesome-icon icon="home" />
           <p>首頁</p>
         </router-link>
       </li>
       <li class="outLi" v-for="list in lists" :key="list.title" :class="list.router">
         <div>
-          <i class="fas" :class="list.class"></i>
+          <font-awesome-icon :icon="list.class" />
           <p>{{ list.title }}</p>
         </div>
         <div class="tooltip">
           <ul class="boxShadow inUl">
             <li v-for="li in list.li" :key="li.title">
-              <router-link :to="{ name: li.link }" @click="activeRouter(list.router)">
-                {{ li.title }}</router-link
-              >
+              <router-link :to="{ name: li.link }" @click="activeRouter(list.router)"> {{ li.title }}</router-link>
             </li>
           </ul>
         </div>
@@ -33,7 +31,7 @@ export default {
       lists: [
         {
           title: '交易',
-          class: 'fa-cash-register',
+          class: 'cash-register',
           router: 'trade',
           li: [
             {
@@ -60,7 +58,7 @@ export default {
         },
         {
           title: '維護',
-          class: 'fa-toolbox',
+          class: 'toolbox',
           router: 'maintain',
           li: [
             {
@@ -95,7 +93,7 @@ export default {
         },
         {
           title: '查詢',
-          class: 'fa-search-dollar',
+          class: 'search-dollar',
           router: 'search',
           li: [
             {

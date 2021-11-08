@@ -1,8 +1,15 @@
 import { createApp } from 'vue';
+
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import App from './App.vue';
 import router from './router';
 
 const mainApp = createApp(App);
+library.add(fas);
+mainApp.component('font-awesome-icon', FontAwesomeIcon);
+mainApp.config.productionTip = false;
 
 const inventoryData = {
   LParam: {

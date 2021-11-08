@@ -12,7 +12,7 @@
         <p>{{ userNum }}</p>
       </div>
       <button type="button" @click="logout">
-        <i class="fas fa-sign-out-alt"></i>
+        <font-awesome-icon icon="sign-out-alt" />
       </button>
     </div>
   </header>
