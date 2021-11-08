@@ -3,6 +3,7 @@ import { createApp } from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import VCalendar from 'v-calendar';
 import App from './App.vue';
 import router from './router';
 
@@ -1146,7 +1147,7 @@ const inventoryData = {
     },
   },
 };
-
+// mainApp.use(VCalendar, {});
 mainApp.provide('inventoryData', inventoryData);
 mainApp.use(router);
 mainApp.mount('#app');
