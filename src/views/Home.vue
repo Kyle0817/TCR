@@ -16,7 +16,7 @@
         <div class="whiteBox outBox col">
           <h1>鈔箱狀態</h1>
           <Tag :straight="straight" @selectBox="clickBox" />
-          <CassetteState :home="true" :tag-boxName="tagBoxName" :th="tableTh" :tcrData="inventoryData.LParam.HISTORY" />
+          <CassetteState :home="true" :tag-boxName="tagBoxName" :th="tableTh" :tcrData="inventoryData.LParam.HISTORY" class="fixed" />
         </div>
       </div>
     </div>

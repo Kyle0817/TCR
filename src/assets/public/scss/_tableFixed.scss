@@ -1,0 +1,33 @@
+table.fixed {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  thead {
+    tr {
+      display: flex;
+    }
+    th {
+      width: 100%;
+    }
+  }
+  tbody {
+    display: block;
+    width: 100%;
+    overflow: overlay;
+    tr {
+      display: flex;
+      td {
+        width: 100%;
+      }
+    }
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: $grey;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $lightgrey;
+    }
+  }
+}

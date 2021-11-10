@@ -5,6 +5,61 @@
         <h1 class="col-2">交易紀錄</h1>
         <DateSearchBar />
       </div>
+      <table class="fixed">
+        <thead>
+          <tr>
+            <th v-for="title in titles" :key="title">{{ title }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="tcrEj in tcrEjs" :key="tcrEj">
+            <td>{{ tcrEj.SNO }}</td>
+            <td>{{ tcrEj.TRN }}</td>
+            <td>{{ tcrEj.EID }}</td>
+            <td>{{ tcrEj.Date }}</td>
+            <td>{{ tcrEj.Time }}</td>
+            <td>{{ tcrEj.Status }}</td>
+            <td class="number">{{ tcrEj.Amount }}</td>
+            <td>
+              <button class="svgBtn" type="button" @click="showInfo = !showInfo">
+                <font-awesome-icon icon="clipboard-list" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="overlay" v-show="showInfo"></div>
+      <div class="moreInfo outBox whiteBox" v-show="showInfo">
+        <h3>交易序號:{{ infoSno }}</h3>
+        <div class="times" @click="showInfo = !showInfo">
+          <font-awesome-icon icon="times" />
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <th v-for="infoTitle in infoTitles" :key="infoTitle">{{ infoTitle }}</th>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>200</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <td>1000</td>
+              <td>50</td>
+            </tr>
+            <tr>
+              <th colspan="2">備註</th>
+            </tr>
+            <tr>
+              <td colspan="2" class="textLeft">這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </template>
@@ -13,8 +68,173 @@ import DateSearchBar from '@/components/DateSearchBar.vue';
 
 export default {
   components: { DateSearchBar },
+  data() {
+    return {
+      titles: ['交易序號', '交易類別', '員工編號', '交易日期', '交易時間', '狀態', '總金額', '明細'],
+      infoTitles: ['面額', '張數'],
+      infoSno: 'S1234567',
+      showInfo: false,
+      tcrEjs: [
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$2,000,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+        {
+          SNO: 'S1234567',
+          TRN: '提款',
+          EID: 'T123456',
+          Date: '2021/11/09',
+          Time: '10:09:08',
+          Status: '成功',
+          Amount: '$20,000',
+        },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
 @import '@/assets/scss/record.scss';
+@import '@/assets/public/scss/_table.scss';
+@import '@/assets/public/scss/_tableFixed.scss';
 </style>

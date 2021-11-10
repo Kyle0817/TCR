@@ -1,9 +1,9 @@
 <template>
   <div class="inputGroup">
     <form action="">
-      <date-picker v-model="selectedDate" :input-debounce="500" color="teal" :max-date="new Date()">
+      <date-picker v-model="selectedDate" :input-debounce="500" color="teal" :max-date="new Date()" :model-config="modelConfig">
         <template v-slot="{ inputValue, inputEvents }">
-          <input :value="inputValue" v-on="inputEvents" placeholder="日期: yy/mm/dd" />
+          <input :value="inputValue" v-on="inputEvents" placeholder="日期: YYYY/MM/DD" />
         </template>
       </date-picker>
       <button>
@@ -22,6 +22,10 @@ export default {
   data() {
     return {
       selectedDate: null,
+      modelConfig: {
+        type: 'string',
+        mask: 'YYYYMMDD', // Uses 'iso' if missing
+      },
     };
   },
 };

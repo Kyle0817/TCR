@@ -1,128 +1,37 @@
-.home {
-  display: flex;
-  justify-content: space-between;
-  .main {
-    // border: 1px solid rgb(253, 169, 169);
-    display: inline-block;
-    min-width: 648px;
-    width: 75%;
-    .top {
-      // border: 1px solid black;
-      margin: 0;
-      h1,
-      h3 {
-        display: inline-block;
-        vertical-align: middle;
-      }
-      h1 {
-        margin-right: 20px;
-      }
-      h3 {
-        color: $darkgrey;
-      }
-    }
-    .bottom {
-      margin: 0 0 0 44px;
-      .whiteBox {
-        position: relative;
-        min-height: 360px;
-      }
-    }
-  }
-  .sideInfoWrap {
-    background-color: $fourthColor;
-    min-width: 280px;
-    width: 25%;
-    padding: 15px;
+.record {
+  // max-width: calc(100vw - 93px);
 
-    .calendar {
-      // border: 1px solid black;
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      height: 78px;
-      div.date {
-        background-color: $white;
-        background: linear-gradient(to bottom, $firstColor 0%, $firstColor 16%, $white 16%, $white 100%);
-        padding: 10px 8px;
-        border-radius: 8px;
-        width: 25%;
-        min-width: 67px;
-        text-align: center;
-        p {
-          margin-top: 8px;
-          font-size: 20px;
-          &.weekday {
-            margin-top: 15px;
-            font-size: 16px;
-          }
-          &.date {
-            line-height: 48px;
-            font-size: 32px;
-          }
-        }
+  .fixed tbody {
+    height: calc(100vh - 195px);
+  }
+  .overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+  }
+  .moreInfo {
+    width: 450px;
+    padding: 30px;
+    background-color: $fourthColor;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    .times {
+      padding: 5px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      cursor: pointer;
+      &:hover svg {
+        color: $warnColor;
       }
-    }
-    table.infoWrap {
-      background-color: $thirdColor;
-      border-radius: 10px;
-      margin-top: 25px;
-      width: 100%;
-      color: $black;
-      tr {
-        border-bottom: 2px solid $fourthColor;
-        margin: 10px;
-        &:last-child {
-          border-bottom: none;
-        }
-        td {
-          padding: 14px 12px;
-          // border: 1px solid black;
-          // width: 50%;
-          &:first-child {
-            min-width: 120px;
-          }
-          &:last-child {
-            color: $white;
-          }
-        }
-      }
-    }
-    div.totalWrap {
-      // border: 1px solid black;
-      margin-top: 55px;
-      margin-bottom: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 260px;
-      .threeTotal {
-        background-color: $white;
-        display: flex;
-        justify-content: space-between;
-        padding: 10px;
-        border-radius: 10px;
-        .textWrap {
-          h1 {
-            font-size: 24px;
-            margin-bottom: 15px;
-          }
-          p {
-            color: $darkgrey;
-          }
-        }
-        .iconWrap {
-          background-color: $secondColor;
-          width: 60px;
-          color: $white;
-          padding: 12px;
-          border-radius: 10px;
-          text-align: center;
-          svg {
-            font-size: 28px;
-            line-height: 57px;
-          }
-        }
+      svg {
+        color: $black;
+        font-size: 20px;
       }
     }
   }

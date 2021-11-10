@@ -27,7 +27,7 @@
 export default {
   data() {
     return {
-      active: 'home',
+      active: '',
       lists: [
         {
           title: '交易',
@@ -109,6 +109,10 @@ export default {
     activeRouter(item) {
       this.active = item;
     },
+  },
+  created() {
+    const active = this.$route.path.split('/')[1];
+    this.active = active;
   },
 };
 </script>

@@ -1,9 +1,11 @@
 <template>
   <table>
-    <tbody>
+    <thead>
       <tr>
         <th v-for="item in th" :key="item">{{ item }}</th>
       </tr>
+    </thead>
+    <tbody>
       <template v-if="th.length === 6">
         <tr v-for="(item, index) in cassetteData" :key="index">
           <td>{{ item.Cassette }}</td>
@@ -183,4 +185,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import '@/assets/public/scss/_table.scss';
+@import '@/assets/public/scss/_tableFixed.scss';
+.fixed tbody {
+  height: 300px;
+}
 </style>

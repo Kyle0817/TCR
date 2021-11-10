@@ -6,6 +6,7 @@ import SignIn from '../views/SignIn.vue';
 
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue');
 const Record = () => import(/* webpackChunkName: "search" */ '../views/Record.vue');
+const Deposit = () => import(/* webpackChunkName: "trade" */ '../views/Deposit.vue');
 const routes = [
   {
     path: '/',
@@ -23,17 +24,17 @@ const routes = [
     },
   },
   {
-    path: '/deposit',
+    path: '/trade/deposit',
     name: 'Deposit',
     components: {
-      default: Home,
+      default: Deposit,
       Menu,
       Hamburger,
       Header,
     },
   },
   {
-    path: '/withdrawal',
+    path: '/trade/withdrawal',
     name: 'Withdrawal',
     components: {
       default: Home,
@@ -43,7 +44,7 @@ const routes = [
     },
   },
   {
-    path: '/pay',
+    path: '/trade/pay',
     name: 'Pay',
     components: {
       default: Home,
@@ -53,7 +54,7 @@ const routes = [
     },
   },
   {
-    path: '/exchange',
+    path: '/trade/exchange',
     name: 'Exchange',
     components: {
       default: Home,
@@ -63,7 +64,7 @@ const routes = [
     },
   },
   {
-    path: '/counting',
+    path: '/trade/counting',
     name: 'Counting',
     components: {
       default: Home,
@@ -73,7 +74,7 @@ const routes = [
     },
   },
   {
-    path: '/replenishCash',
+    path: '/maintain/replenishCash',
     name: 'ReplenishCash',
     components: {
       default: Home,
@@ -83,7 +84,7 @@ const routes = [
     },
   },
   {
-    path: '/replenishCoin',
+    path: '/maintain/replenishCoin',
     name: 'ReplenishCoin',
     components: {
       default: Home,
@@ -93,7 +94,7 @@ const routes = [
     },
   },
   {
-    path: '/unloadCash',
+    path: '/maintain/unloadCash',
     name: 'UnloadCash',
     components: {
       default: Home,
@@ -103,7 +104,7 @@ const routes = [
     },
   },
   {
-    path: '/unloadCoin',
+    path: '/maintain/unloadCoin',
     name: 'UnloadCoin',
     components: {
       default: Home,
@@ -113,7 +114,7 @@ const routes = [
     },
   },
   {
-    path: '/changeCash',
+    path: '/maintain/changeCash',
     name: 'ChangeCash',
     components: {
       default: Home,
@@ -123,7 +124,7 @@ const routes = [
     },
   },
   {
-    path: '/changeCoin',
+    path: '/maintain/changeCoin',
     name: 'ChangeCoin',
     components: {
       default: Home,
@@ -133,7 +134,7 @@ const routes = [
     },
   },
   {
-    path: '/setting',
+    path: '/maintain/setting',
     name: 'Setting',
     components: {
       default: Home,
@@ -143,7 +144,7 @@ const routes = [
     },
   },
   {
-    path: '/record',
+    path: '/search/record',
     name: 'Record',
     components: {
       default: Record,

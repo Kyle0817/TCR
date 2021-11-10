@@ -6,11 +6,13 @@ body {
   background-color: $body;
   min-width: 1024px;
 }
+
 .view {
   display: inline-block;
   margin-left: 76px;
   margin-top: 55px;
-  max-width: calc(100vw - 76px);
+  // max-width: calc(100vw - 76px);
+  max-width: calc(100vw - 93px);
   padding: 0;
   min-width: calc(1024px - 76px);
   width: 100%;
@@ -62,4 +64,24 @@ h3 {
   &:active {
     transform: translateY(1px);
   }
+}
+.svgBtn {
+  outline: none;
+  background-color: $thirdColor;
+  border: none;
+  color: $white;
+  font-size: 18px;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 5px;
+  &:hover {
+    background-color: $secondColor;
+    transition: background-color 0.3s;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+.textLeft {
+  text-align: left;
 }
