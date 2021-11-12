@@ -13,9 +13,16 @@
       </thead>
       <tbody>
         <tr v-for="amountArr in amountArrs" :key="amountArr">
-          <td>{{ amountArr.Denomination }}</td>
-          <td>{{ amountArr.Value }}</td>
-          <td class="number">{{ amountArr.Amount }}</td>
+          <td class="col-4">{{ amountArr.Denomination }}</td>
+          <template v-if="typeText">
+            <td>{{ amountArr.Value }}</td>
+          </template>
+          <template v-if="typeInput">
+            <td class="col-4">
+              <input type="number" v-model.lazy="amountArr.Value" />
+            </td>
+          </template>
+          <td class="number col-4">{{ parseInt(amountArr.Denomination) * parseInt(amountArr.Value) }}</td>
         </tr>
       </tbody>
     </table>
@@ -23,11 +30,16 @@
 </template>
 <script>
 export default {
-  props: ['topTitle', 'titles', 'amountArrs'],
+  props: ['topTitle', 'titles', 'amountArrs', 'typeText', 'typeInput'],
+  computed: {},
 };
 </script>
 <style lang="scss" scoped>
 @import '@/assets/public/scss/_table.scss';
+table tr td {
+  line-height: 35px;
+  // padding: 10px;
+}
 .btns {
   // border: 1px solid black;
   position: absolute;

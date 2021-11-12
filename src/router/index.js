@@ -7,6 +7,8 @@ import SignIn from '../views/SignIn.vue';
 const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue');
 const Record = () => import(/* webpackChunkName: "search" */ '../views/Record.vue');
 const Deposit = () => import(/* webpackChunkName: "trade" */ '../views/Deposit.vue');
+const Withdrawal = () => import(/* webpackChunkName: "trade" */ '../views/Withdrawal.vue');
+
 const routes = [
   {
     path: '/',
@@ -37,7 +39,7 @@ const routes = [
     path: '/trade/withdrawal',
     name: 'Withdrawal',
     components: {
-      default: Home,
+      default: Withdrawal,
       Menu,
       Hamburger,
       Header,

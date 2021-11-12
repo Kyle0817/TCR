@@ -4,6 +4,9 @@
   .fixed tbody {
     height: calc(100vh - 195px);
     min-height: 450px;
+    td {
+      line-height: 30px;
+    }
   }
   .overlay {
     position: fixed;
@@ -21,6 +24,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+
     .times {
       padding: 5px;
       position: absolute;

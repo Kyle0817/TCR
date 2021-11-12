@@ -1,14 +1,14 @@
 <template>
   <div class="deposit view">
-    <div class="depositBar row">
+    <div class="amountBar row">
       <h1>存款金額 :</h1>
       <h1 class="line col-6">$ {{ amount }}</h1>
       <button type="button" class="firstBtn" @click="start">{{ startBtnText }}</button>
       <button type="button" class="cancelBtn" v-if="startBtnText === '確認存入'">取消</button>
     </div>
     <div class="wrap row">
-      <trade-box :topTitle="topTitleCash" :titles="titles" :amountArrs="cashArr"> </trade-box>
-      <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" />
+      <TradeBox :topTitle="topTitleCash" :titles="titles" :amountArrs="cashArr" :typeText="true" :typeInput="false" />
+      <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="true" :typeInput="false" />
     </div>
   </div>
 </template>
@@ -84,6 +84,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-@import '@/assets/scss/deposit.scss';
-</style>

@@ -2,6 +2,7 @@
   <header>
     <div class="logoWrap">
       <img :src="imgSrc" alt="logo" />
+      <h1>智慧櫃員系統</h1>
     </div>
     <div class="textSection">
       <div class="lightWrap">
