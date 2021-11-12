@@ -1,10 +1,12 @@
 <template>
   <table>
-    <tbody>
+    <thead>
       <tr>
         <th>作業項目</th>
         <th>總金額</th>
       </tr>
+    </thead>
+    <tbody>
       <tr v-for="(value, key) in statistics" :key="value">
         <td>{{ getWorkItemKey.getItemKey(key) }}</td>
         <td class="number">${{ formatDollar.format(value) }}</td>

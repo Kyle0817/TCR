@@ -3,6 +3,7 @@
 
   .fixed tbody {
     height: calc(100vh - 195px);
+    min-height: 450px;
   }
   .overlay {
     position: fixed;

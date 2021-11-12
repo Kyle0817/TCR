@@ -12,20 +12,27 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="tcrEj in tcrEjs" :key="tcrEj">
-            <td>{{ tcrEj.SNO }}</td>
-            <td>{{ tcrEj.TRN }}</td>
-            <td>{{ tcrEj.EID }}</td>
-            <td>{{ tcrEj.Date }}</td>
-            <td>{{ tcrEj.Time }}</td>
-            <td>{{ tcrEj.Status }}</td>
-            <td class="number">{{ tcrEj.Amount }}</td>
-            <td>
-              <button class="svgBtn" type="button" @click="showInfo = !showInfo">
-                <font-awesome-icon icon="clipboard-list" />
-              </button>
-            </td>
-          </tr>
+          <template v-if="tcrEjs.length <= 0">
+            <tr class="noData">
+              <td>無資料</td>
+            </tr>
+          </template>
+          <template v-else>
+            <tr v-for="tcrEj in tcrEjs" :key="tcrEj">
+              <td>{{ tcrEj.SNO }}</td>
+              <td>{{ tcrEj.TRN }}</td>
+              <td>{{ tcrEj.EID }}</td>
+              <td>{{ tcrEj.Date }}</td>
+              <td>{{ tcrEj.Time }}</td>
+              <td>{{ tcrEj.Status }}</td>
+              <td class="number">{{ tcrEj.Amount }}</td>
+              <td>
+                <button class="svgBtn" type="button" @click="showDetail(tcrEj.Currency, tcrEj.Message)">
+                  <font-awesome-icon icon="clipboard-list" />
+                </button>
+              </td>
+            </tr>
+          </template>
         </tbody>
       </table>
       <div class="overlay" v-show="showInfo"></div>
@@ -39,23 +46,15 @@
             <tr>
               <th v-for="infoTitle in infoTitles" :key="infoTitle">{{ infoTitle }}</th>
             </tr>
-            <tr>
-              <td>100</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>200</td>
-              <td>50</td>
-            </tr>
-            <tr>
-              <td>1000</td>
-              <td>50</td>
+            <tr v-for="(curr, index) in currArr" :key="index">
+              <td>{{ curr.Denomination }}</td>
+              <td>{{ curr.Value }}</td>
             </tr>
             <tr>
               <th colspan="2">備註</th>
             </tr>
             <tr>
-              <td colspan="2" class="textLeft">這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註</td>
+              <td colspan="2" class="textLeft">{{ meg || '無' }}</td>
             </tr>
           </tbody>
         </table>
@@ -83,6 +82,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
         },
         {
           SNO: 'S1234567',
@@ -92,6 +110,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$2,000,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -101,6 +138,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
         },
         {
           SNO: 'S1234567',
@@ -110,6 +166,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -119,6 +194,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -128,6 +222,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -137,6 +250,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -146,6 +278,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -155,6 +306,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -164,6 +334,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -173,6 +362,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -182,6 +390,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -191,6 +418,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -200,6 +446,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -209,6 +474,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -218,6 +502,25 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
         {
           SNO: 'S1234567',
@@ -227,10 +530,39 @@ export default {
           Time: '10:09:08',
           Status: '成功',
           Amount: '$20,000',
+          Currency: [
+            {
+              Denomination: 2000,
+              Value: 99,
+            },
+            {
+              Denomination: 1000,
+              Value: 10,
+            },
+            {
+              Denomination: 500,
+              Value: 5,
+            },
+            {
+              Denomination: 100,
+              Value: 2,
+            },
+          ],
+          Message: '',
         },
       ],
+      currArr: [],
+      meg: '',
     };
   },
+  methods: {
+    showDetail(currency, message) {
+      this.showInfo = !this.showInfo;
+      this.currArr = currency;
+      this.meg = message;
+    },
+  },
+  created() {},
 };
 </script>
 <style lang="scss" scoped>

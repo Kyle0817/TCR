@@ -12,22 +12,22 @@ body {
   margin-left: 76px;
   margin-top: 55px;
   // max-width: calc(100vw - 76px);
-  max-width: calc(100vw - 93px);
+  max-width: calc(100vw - 91px);
   padding: 0;
   min-width: calc(1024px - 76px);
   width: 100%;
-}
-h1 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
-}
-h3 {
-  font-size: 18px;
-  margin-bottom: 20px;
+  h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
 }
 .outBox {
   border-radius: 10px;
@@ -48,17 +48,35 @@ h3 {
 .boxShadow {
   box-shadow: 1px 1px 10px rgba(114, 114, 114, 0.3);
 }
-.firstBtn {
+button {
   outline: none;
-  background-color: $firstColor;
   border: none;
-  color: $white;
-  font-size: 18px;
-  padding: 10px 15px;
-  border-radius: 50px;
   cursor: pointer;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: "Noto Sans TC", serif;
+}
+.firstBtn {
+  background-color: $firstColor;
+  color: $white;
+  padding: 10px 15px;
+  &.round {
+    border-radius: 50px;
+  }
   &:hover {
     background-color: $secondColor;
+    transition: background-color 0.3s;
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}
+.cancelBtn {
+  background-color: $warnColor;
+  color: $white;
+  padding: 10px 15px;
+  &:hover {
+    background-color: darken($warnColor, 10%);
     transition: background-color 0.3s;
   }
   &:active {
@@ -84,4 +102,6 @@ h3 {
 }
 .textLeft {
   text-align: left;
+  line-height: 20px;
+  letter-spacing: 1px;
 }

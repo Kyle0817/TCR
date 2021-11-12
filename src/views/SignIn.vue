@@ -13,7 +13,7 @@
           <input type="text" v-model.trim="employeeID" />
           <label for="">密碼:</label>
           <input type="password" v-model.trim="password" />
-          <button type="submit" class="firstBtn">登入</button>
+          <button type="submit" class="firstBtn round">登入</button>
         </form>
       </div>
     </div>

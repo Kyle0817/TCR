@@ -39,7 +39,7 @@ export default {
     display: inline-block;
     input {
       font-size: 16px;
-      padding: 4px 5px;
+      padding: 5px;
       border: 2px solid $secondColor;
       border-radius: 5px 0 0 5px;
       border-right: none;
@@ -52,7 +52,7 @@ export default {
   button {
     display: inline-block;
     border: none;
-    padding: 5px 10px;
+    padding: 4px 10px;
     background-color: $secondColor;
     vertical-align: top;
     font-size: 16px;
