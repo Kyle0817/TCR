@@ -47,8 +47,8 @@
               <th v-for="infoTitle in infoTitles" :key="infoTitle">{{ infoTitle }}</th>
             </tr>
             <tr v-for="(curr, index) in currArr" :key="index">
-              <td>{{ curr.Denomination }}</td>
-              <td>{{ curr.Value }}</td>
+              <td>{{ curr[0] }}</td>
+              <td>{{ curr[1] }}</td>
             </tr>
           </tbody>
         </table>
@@ -78,9 +78,11 @@ export default {
     showDetail(tcrEj) {
       this.currArr = [];
       this.infoSno = tcrEj.SNO;
-      console.log(tcrEj.Message.split(/[,*]/));
-      //  this.currArr = tcrEj.Message.split(/[,*]/);
-      console.log(this.currArr);
+      const meg = tcrEj.Message.split(/[,]/);
+      for (let i = 0; i < meg.length; i += 1) {
+        this.currArr.push({ ...meg[i].split(/[*]/) });
+        // console.log(this.currArr);
+      }
       this.showInfo = !this.showInfo;
     },
     transactionDate(emitDate) {
@@ -103,6 +105,28 @@ export default {
     },
   },
   created() {
+    this.tcrEjs = [
+      {
+        SNO: '13123',
+        TRN: '提款',
+        EID: '1111',
+        Date: '2021/12/02',
+        Time: '19:00:00',
+        Amount: 2000,
+        Status: '成功',
+        Message: '$1000*5,$100*5',
+      },
+      {
+        SNO: '13124',
+        TRN: '提款',
+        EID: '1111',
+        Date: '2021/12/02',
+        Time: '19:00:00',
+        Amount: 2000,
+        Status: '成功',
+        Message: '$1000*1',
+      },
+    ];
     // this.transactionRecord();
   },
 };

@@ -6,7 +6,7 @@
           <input :value="inputValue" v-on="inputEvents" placeholder="日期: YYYY/MM/DD" />
         </template>
       </date-picker>
-      <button @click="$emit('searchDate', selectedDate)">
+      <button class="search" @click="$emit('searchDate', selectedDate)">
         <font-awesome-icon icon="search" />
       </button>
     </form>
@@ -44,12 +44,14 @@ export default {
       border-radius: 5px 0 0 5px;
       border-right: none;
       outline: none;
+      height: 32px;
       &:focus {
         background-color: $body;
       }
     }
   }
   button {
+    height: 32px;
     display: inline-block;
     border: none;
     padding: 4px 10px;
@@ -59,6 +61,9 @@ export default {
     text-align: center;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
+    &.search {
+      height: 32px;
+    }
     svg {
       color: $white;
       font-size: 18px;
