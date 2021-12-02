@@ -8,7 +8,7 @@
     <div class="infoWrap">
       <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
-      <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.LParam.INVENTORY" />
+      <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.INVENTORY" />
     </div>
   </div>
 </template>
@@ -17,8 +17,8 @@ import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
 
 export default {
-  inject: ['inventoryData'],
   components: { CassetteState, Tag },
+  inject: ['inventoryData'],
   data() {
     return {
       tagBoxName: '鈔箱盒',
@@ -33,6 +33,10 @@ export default {
     clickBox(box) {
       this.tagBoxName = box;
     },
+  },
+  created() {
+    // this.inventoryData = JSON.parse(this.inventoryData);
+    this.inventoryData = this.inventoryData.LParam;
   },
 };
 </script>

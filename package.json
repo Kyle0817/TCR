@@ -20,6 +20,7 @@
     "sass": "^1.42.1",
     "v-calendar": "^3.0.0-alpha.6",
     "vue": "^3.0.0",
+    "vue-axios": "^3.4.0",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {

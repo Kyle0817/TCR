@@ -7,7 +7,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(value, key) in statistics" :key="value">
+      <tr v-for="(value, key) in showStatistics" :key="value">
         <td>{{ getWorkItemKey.getItemKey(key) }}</td>
         <td class="number">${{ formatDollar.format(value) }}</td>
       </tr>
@@ -28,6 +28,7 @@ export default {
   },
   data() {
     return {
+      showStatistics: {},
       formatDollar: formatter,
     };
   },
@@ -35,6 +36,15 @@ export default {
     getWorkItemKey() {
       return textMapping;
     },
+  },
+  created() {
+  //  console.log(this.statistics);
+    const {
+      TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
+    } = this.statistics;
+    this.showStatistics = {
+      TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
+    };
   },
 };
 </script>

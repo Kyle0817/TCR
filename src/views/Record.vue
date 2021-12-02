@@ -3,7 +3,7 @@
     <div class="whiteBox outBox">
       <div class="row">
         <h1 class="col-2">交易紀錄</h1>
-        <DateSearchBar />
+        <DateSearchBar @searchDate="transactionDate" />
       </div>
       <table class="fixed">
         <thead>
@@ -27,7 +27,7 @@
               <td>{{ tcrEj.Status }}</td>
               <td class="number">{{ tcrEj.Amount }}</td>
               <td>
-                <button class="svgBtn" type="button" @click="showDetail(tcrEj.Currency, tcrEj.Message)">
+                <button class="svgBtn" type="button" @click="showDetail(tcrEj)">
                   <font-awesome-icon icon="clipboard-list" />
                 </button>
               </td>
@@ -50,12 +50,6 @@
               <td>{{ curr.Denomination }}</td>
               <td>{{ curr.Value }}</td>
             </tr>
-            <tr>
-              <th colspan="2">備註</th>
-            </tr>
-            <tr>
-              <td colspan="2" class="textLeft">{{ meg || '無' }}</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -63,6 +57,7 @@
   </div>
 </template>
 <script>
+import moment from 'moment';
 import DateSearchBar from '@/components/DateSearchBar.vue';
 
 export default {
@@ -71,498 +66,45 @@ export default {
     return {
       titles: ['交易序號', '交易類別', '員工編號', '交易日期', '交易時間', '狀態', '總金額', '明細'],
       infoTitles: ['面額', '張數'],
-      infoSno: 'S1234567',
+      infoSno: '',
       showInfo: false,
-      tcrEjs: [
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$2,000,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-        {
-          SNO: 'S1234567',
-          TRN: '提款',
-          EID: 'T123456',
-          Date: '2021/11/09',
-          Time: '10:09:08',
-          Status: '成功',
-          Amount: '$20,000',
-          Currency: [
-            {
-              Denomination: 2000,
-              Value: 99,
-            },
-            {
-              Denomination: 1000,
-              Value: 10,
-            },
-            {
-              Denomination: 500,
-              Value: 5,
-            },
-            {
-              Denomination: 100,
-              Value: 2,
-            },
-          ],
-          Message: '',
-        },
-      ],
+      tcrEjs: [],
       currArr: [],
       meg: '',
+      date: moment(),
     };
   },
   methods: {
-    showDetail(currency, message) {
+    showDetail(tcrEj) {
+      this.currArr = [];
+      this.infoSno = tcrEj.SNO;
+      console.log(tcrEj.Message.split(/[,*]/));
+      //  this.currArr = tcrEj.Message.split(/[,*]/);
+      console.log(this.currArr);
       this.showInfo = !this.showInfo;
-      this.currArr = currency;
-      this.meg = message;
+    },
+    transactionDate(emitDate) {
+      if (emitDate !== null) {
+        this.date = moment(emitDate);
+        this.transactionRecord();
+      }
+    },
+    transactionRecord() {
+      const tcrAPI = process.env.VUE_APP_TCR_API;
+      this.$axios
+        .post(`${tcrAPI}EJLog/${this.date.format('yyyyMMDD')}`)
+        .then((res) => {
+          this.tcrEjs = JSON.parse(JSON.parse(res.data).LParam);
+          console.log(this.tcrEjs);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
-  created() {},
+  created() {
+    // this.transactionRecord();
+  },
 };
 </script>
 <style lang="scss" scoped>

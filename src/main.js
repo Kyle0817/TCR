@@ -4,15 +4,43 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // import VCalendar from 'v-calendar';
+import axios from 'axios';
+// import VueAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
 
 const mainApp = createApp(App);
+mainApp.config.globalProperties.$axios = axios;
 library.add(fas);
 mainApp.component('font-awesome-icon', FontAwesomeIcon);
 mainApp.config.productionTip = false;
 
-const inventoryData = {
+// const tcrAPI = process.env.VUE_APP_TCR_API;
+// axios.post(`${tcrAPI}Detail`).then((res) => {
+//   // console.log(res);
+//   mainApp.provide('inventoryData', JSON.parse(res.data).LParam);
+//   mainApp.use(router, axios);
+//   mainApp.mount('#app');
+// });
+
+// const mainApp = createApp(App, {
+//   created() {
+//     const tcrAPI = process.env.VUE_APP_TCR_API;
+//     axios.post(`${tcrAPI}Detail`).then((res) => {
+//       console.log(res);
+//       mainApp.provide('inventoryData', JSON.parse(res.data).LParam);
+//     });
+//   },
+// });
+// // mainApp.config.globalProperties.$axios = axios;
+// library.add(fas);
+// mainApp.component('font-awesome-icon', FontAwesomeIcon);
+// // mainApp.config.productionTip = false;
+
+// mainApp.use(router, axios, VueAxios);
+// mainApp.mount('#app');
+
+const tcrData = {
   LParam: {
     INVENTORY: [
       {
@@ -225,6 +253,11 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 65, // 張數
+          },
+          {
+            Currency: 'TWD',
             Denomination: 100, // 面額
             Value: 500, // 張數
           },
@@ -240,6 +273,11 @@ const inventoryData = {
             Currency: 'TWD',
             Denomination: 500, // 面額
             Value: 15, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 28, // 張數
           },
           {
             Currency: 'TWD',
@@ -276,6 +314,11 @@ const inventoryData = {
             Currency: 'TWD',
             Denomination: 500, // 面額
             Value: 1250, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 85, // 張數
           },
           {
             Currency: 'TWD',
@@ -411,6 +454,11 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 6, // 張數
+          },
+          {
+            Currency: 'TWD',
             Denomination: 100, // 面額
             Value: 56, // 張數
           },
@@ -429,6 +477,11 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 7, // 張數
+          },
+          {
+            Currency: 'TWD',
             Denomination: 100, // 面額
             Value: 26, // 張數
           },
@@ -444,6 +497,11 @@ const inventoryData = {
             Currency: 'TWD',
             Denomination: 500, // 面額
             Value: 22, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 200, // 面額
+            Value: 13, // 張數
           },
           {
             Currency: 'TWD',
@@ -950,8 +1008,18 @@ const inventoryData = {
           // 卸鈔
           {
             Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 33, // 張數
+          },
+          {
+            Currency: 'TWD',
             Denomination: 10, // 面額
             Value: 30, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 15, // 張數
           },
         ],
         Deposit: [
@@ -968,7 +1036,7 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
-            Denomination: 5, // 面額
+            Denomination: 1, // 面額
             Value: 12, // 張數
           },
         ],
@@ -986,12 +1054,27 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
-            Denomination: 5, // 面額
+            Denomination: 1, // 面額
             Value: 5, // 張數
           },
         ],
         Rejected: [
           // 吐拒張數
+          {
+            Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 85, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 10, // 面額
+            Value: 109, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 5, // 張數
+          },
         ],
       },
       {
@@ -1018,7 +1101,17 @@ const inventoryData = {
           // 卸鈔
           {
             Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 12, // 張數
+          },
+          {
+            Currency: 'TWD',
             Denomination: 10, // 面額
+            Value: 3, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
             Value: 3, // 張數
           },
         ],
@@ -1036,7 +1129,7 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
-            Denomination: 5, // 面額
+            Denomination: 1, // 面額
             Value: 6, // 張數
           },
         ],
@@ -1054,12 +1147,27 @@ const inventoryData = {
           },
           {
             Currency: 'TWD',
-            Denomination: 5, // 面額
+            Denomination: 1, // 面額
             Value: 8, // 張數
           },
         ],
         Rejected: [
           // 吐拒張數
+          {
+            Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 23, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 10, // 面額
+            Value: 78, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 8, // 張數
+          },
         ],
       },
       {
@@ -1076,9 +1184,29 @@ const inventoryData = {
             Denomination: 10, // 面額
             Value: 6, // 張數
           },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 6, // 張數
+          },
         ],
         UnLoad: [
           // 卸鈔
+          {
+            Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 3, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 10, // 面額
+            Value: 6, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 6, // 張數
+          },
         ],
         Deposit: [
           // 存款張數
@@ -1091,6 +1219,11 @@ const inventoryData = {
             Currency: 'TWD',
             Denomination: 10, // 面額
             Value: 67, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 6, // 張數
           },
         ],
         Dispense: [
@@ -1105,9 +1238,29 @@ const inventoryData = {
             Denomination: 10, // 面額
             Value: 81, // 張數
           },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 6, // 張數
+          },
         ],
         Rejected: [
           // 吐拒張數
+          {
+            Currency: 'TWD',
+            Denomination: 50, // 面額
+            Value: 20, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 10, // 面額
+            Value: 81, // 張數
+          },
+          {
+            Currency: 'TWD',
+            Denomination: 1, // 面額
+            Value: 6, // 張數
+          },
         ],
       },
     ],
@@ -1147,7 +1300,509 @@ const inventoryData = {
     },
   },
 };
-// mainApp.use(VCalendar, {});
-mainApp.provide('inventoryData', inventoryData);
-mainApp.use(router);
+mainApp.provide('inventoryData', tcrData);
+mainApp.use(router, axios);
 mainApp.mount('#app');
+
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$2,000,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '這裡是備註這裡是備註這裡是備註這裡是備註這裡是備註',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+// {
+//   SNO: 'S1234567',
+//   TRN: '提款',
+//   EID: 'T123456',
+//   Date: '2021/11/09',
+//   Time: '10:09:08',
+//   Status: '成功',
+//   Amount: '$20,000',
+//   Currency: [
+//     {
+//       Denomination: 2000,
+//       Value: 99,
+//     },
+//     {
+//       Denomination: 1000,
+//       Value: 10,
+//     },
+//     {
+//       Denomination: 500,
+//       Value: 5,
+//     },
+//     {
+//       Denomination: 100,
+//       Value: 2,
+//     },
+//   ],
+//   Message: '',
+// },
+
+// {
+//   Denomination: '2000',
+//   Value: '0',
+//   Amount: '0',
+// },
+// {
+//   Denomination: '1000',
+//   Value: '0',
+//   Amount: '0',
+// },
+// {
+//   Denomination: '500',
+//   Value: '0',
+//   Amount: '0',
+// },
+// {
+//   Denomination: '200',
+//   Value: '0',
+//   Amount: '0',
+// },
+// {
+//   Denomination: '100',
+//   Value: '0',
+//   Amount: '0',
+// },

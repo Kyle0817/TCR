@@ -6,7 +6,7 @@
           <input :value="inputValue" v-on="inputEvents" placeholder="日期: YYYY/MM/DD" />
         </template>
       </date-picker>
-      <button>
+      <button @click="$emit('searchDate', selectedDate)">
         <font-awesome-icon icon="search" />
       </button>
     </form>
