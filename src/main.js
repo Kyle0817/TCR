@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -39,6 +38,14 @@ mainApp.config.productionTip = false;
 
 // mainApp.use(router, axios, VueAxios);
 // mainApp.mount('#app');
+const tcrAPI = 'https://vue3-course-api.hexschool.io/admin/signin';
+const user = {
+  username: '123@gmail.com',
+  password: '123',
+};
+axios.post(tcrAPI, user).then((res) => {
+  console.log(res);
+});
 
 const tcrData = {
   LParam: {

@@ -10,9 +10,9 @@
         <img :src="imgSrc" alt="logo" />
         <form @submit.prevent="login">
           <label for="">員工編號:</label>
-          <input type="text" v-model.trim="employeeID" />
+          <input type="text" v-model.trim="employeeID" class="line" />
           <label for="">密碼:</label>
-          <input type="password" v-model.trim="password" />
+          <input type="password" v-model.trim="password" class="line" />
           <button type="submit" class="firstBtn round">登入</button>
         </form>
       </div>
@@ -100,6 +100,9 @@ export default {
           width: 100%;
           font-size: 18px;
           margin-bottom: 30px;
+          &.line {
+            border-radius: 0;
+          }
         }
         button {
           text-align: center;
