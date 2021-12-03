@@ -47,8 +47,8 @@
               <th v-for="infoTitle in infoTitles" :key="infoTitle">{{ infoTitle }}</th>
             </tr>
             <tr v-for="(curr, index) in currArr" :key="index">
-              <td>{{ curr[0] }}</td>
-              <td>{{ curr[1] }}</td>
+              <td>{{ curr.Denomination }}</td>
+              <td>{{ curr.Value }}</td>
             </tr>
           </tbody>
         </table>
@@ -80,8 +80,8 @@ export default {
       this.infoSno = tcrEj.SNO;
       const meg = tcrEj.Message.split(/[,]/);
       for (let i = 0; i < meg.length; i += 1) {
-        this.currArr.push({ ...meg[i].split(/[*]/) });
-        // console.log(this.currArr);
+        const { 0: Denomination, 1: Value } = { ...meg[i].split(/[*]/) };
+        this.currArr.push({ Denomination, Value });
       }
       this.showInfo = !this.showInfo;
     },
@@ -127,7 +127,7 @@ export default {
         Message: '$1000*1',
       },
     ];
-    // this.transactionRecord();
+    this.transactionRecord();
   },
 };
 </script>
