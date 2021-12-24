@@ -10,18 +10,25 @@
       <TradeBox :topTitle="topTitleCash" :titles="titles" :amountArrs="cashArr" :typeText="false" :typeInput="true" />
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="false" :typeInput="true" />
     </div>
+    <PopAskStop :showPop="showPop" @askStop="askStop" />
+    <WaitStop :waitStop="stop" />
   </div>
 </template>
 <script>
 import TradeBox from '@/components/public/TradeBox.vue';
+import PopAskStop from '@/components/public/PopAskStop.vue';
+import WaitStop from '@/components/public/waitStop.vue';
 
 export default {
   components: {
     TradeBox,
-    // PopAskStop,
+    PopAskStop,
+    WaitStop,
   },
   data() {
     return {
+      stop: false,
+      showPop: false,
       startBtnText: '開始兌換',
       amount: 0,
       titles: ['面額', '數量', '金額'],
@@ -80,10 +87,19 @@ export default {
   },
   methods: {
     start() {
-      this.startBtnText = '確認兌換';
+      if (this.startBtnText === '開始兌換') {
+        this.startBtnText = '確認兌換';
+      } else {
+        this.showPop = true;
+      }
     },
     cancel() {
       this.startBtnText = '開始兌換';
+    },
+    askStop(res) {
+      this.showPop = false;
+      this.stop = res;
+      this.startBtn = false;
     },
   },
 };

@@ -19,7 +19,7 @@
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="true" :typeInput="false" />
     </div>
     <PopAskStop :showPop="showPop" @askStop="askStop" />
-    <div class="confirmDeposit" v-if="stop">
+    <div v-if="stop">
       <div class="overlay"></div>
       <div class="popBox outBox">
         <p class="wait">處理中... 請稍後</p>

@@ -10,6 +10,7 @@ const Deposit = () => import(/* webpackChunkName: "trade" */ '../views/Deposit.v
 const Withdrawal = () => import(/* webpackChunkName: "trade" */ '../views/Withdrawal.vue');
 const Pay = () => import(/* webpackChunkName: "trade" */ '../views/Pay.vue');
 const Exchange = () => import(/* webpackChunkName: "trade" */ '../views/Exchange.vue');
+const Counting = () => import(/* webpackChunkName: "trade" */ '../views/Counting.vue');
 const routes = [
   {
     path: '/',
@@ -70,7 +71,7 @@ const routes = [
     path: '/trade/counting',
     name: 'Counting',
     components: {
-      default: Home,
+      default: Counting,
       Menu,
       Hamburger,
       Header,
