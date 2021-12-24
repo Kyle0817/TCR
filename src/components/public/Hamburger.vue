@@ -15,10 +15,11 @@
 <script>
 import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
+import inventoryData from '@/mixins/inventoryData';
 
 export default {
   components: { CassetteState, Tag },
-  inject: ['inventoryData'],
+  mixins: [inventoryData],
   data() {
     return {
       tagBoxName: '鈔箱盒',
@@ -35,8 +36,7 @@ export default {
     },
   },
   created() {
-    // this.inventoryData = JSON.parse(this.inventoryData);
-    this.inventoryData = this.inventoryData.LParam;
+    this.getTcrData();
   },
 };
 </script>

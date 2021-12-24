@@ -15,8 +15,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
+    z-index: 10;
   }
   .moreInfo {
+    z-index: 99;
     width: 450px;
     padding: 30px;
     background-color: $fourthColor;

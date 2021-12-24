@@ -152,12 +152,20 @@ input {
       }
     }
   }
+  div.inputWrap {
+    line-height: 44px;
+    input {
+      font-size: 22px;
+    }
+  }
   button {
     margin-right: 30px;
   }
 }
 .deposit,
-.withdrawal {
+.withdrawal,
+.pay,
+.exchange {
   .wrap {
     margin-left: 0;
     margin-top: 50px;

@@ -62,6 +62,7 @@ import textMapping from '@/data/textMapping';
 import Statistics from '@/components/Statistics.vue';
 import CassetteState from '@/components/CassetteState.vue';
 import Tag from '@/components/public/Tag.vue';
+import inventoryData from '@/mixins/inventoryData';
 
 const formatter = new Intl.NumberFormat();
 
@@ -72,9 +73,10 @@ export default {
     CassetteState,
     Tag,
   },
-  inject: ['inventoryData'],
+  mixins: [inventoryData],
   data() {
     return {
+      inventoryData: {},
       straight: true,
       toDate: moment(),
       week: moment().isoWeekday(),
@@ -115,8 +117,7 @@ export default {
     },
   },
   created() {
-    // this.inventoryData = JSON.parse(this.inventoryData);
-    this.inventoryData = this.inventoryData.LParam;
+    this.getTcrData();
     this.initData();
   },
 };

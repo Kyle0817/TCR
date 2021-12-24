@@ -8,7 +8,8 @@ const Home = () => import(/* webpackChunkName: "home" */ '../views/Home.vue');
 const Record = () => import(/* webpackChunkName: "search" */ '../views/Record.vue');
 const Deposit = () => import(/* webpackChunkName: "trade" */ '../views/Deposit.vue');
 const Withdrawal = () => import(/* webpackChunkName: "trade" */ '../views/Withdrawal.vue');
-
+const Pay = () => import(/* webpackChunkName: "trade" */ '../views/Pay.vue');
+const Exchange = () => import(/* webpackChunkName: "trade" */ '../views/Exchange.vue');
 const routes = [
   {
     path: '/',
@@ -49,7 +50,7 @@ const routes = [
     path: '/trade/pay',
     name: 'Pay',
     components: {
-      default: Home,
+      default: Pay,
       Menu,
       Hamburger,
       Header,
@@ -59,7 +60,7 @@ const routes = [
     path: '/trade/exchange',
     name: 'Exchange',
     components: {
-      default: Home,
+      default: Exchange,
       Menu,
       Hamburger,
       Header,

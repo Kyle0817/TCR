@@ -127,7 +127,7 @@ export default {
         Message: '$1000*1',
       },
     ];
-    this.transactionRecord();
+    // this.transactionRecord();
   },
 };
 </script>
