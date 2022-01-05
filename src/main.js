@@ -8,7 +8,7 @@ import App from './App.vue';
 import router from './router';
 
 const mainApp = createApp(App);
-// mainApp.config.globalProperties.$axios = axios;
+mainApp.config.globalProperties.$axios = axios;
 library.add(fas);
 mainApp.use(router, axios, VueAxios);
 mainApp.component('font-awesome-icon', FontAwesomeIcon);

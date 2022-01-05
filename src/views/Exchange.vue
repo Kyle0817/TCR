@@ -11,13 +11,13 @@
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="false" :typeInput="true" />
     </div>
     <PopAskStop :showPop="showPop" @askStop="askStop" />
-    <WaitStop :waitStop="stop" />
+    <WaitStop :waitStop="waitStop" />
   </div>
 </template>
 <script>
 import TradeBox from '@/components/public/TradeBox.vue';
 import PopAskStop from '@/components/public/PopAskStop.vue';
-import WaitStop from '@/components/public/waitStop.vue';
+import WaitStop from '@/components/public/WaitStop.vue';
 
 export default {
   components: {
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      stop: false,
+      waitStop: false,
       showPop: false,
       startBtnText: '開始兌換',
       amount: 0,
@@ -98,7 +98,7 @@ export default {
     },
     askStop(res) {
       this.showPop = false;
-      this.stop = res;
+      this.waitStop = res;
       this.startBtn = false;
     },
   },

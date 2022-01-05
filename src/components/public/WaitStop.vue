@@ -8,11 +8,12 @@
 </template>
 <script>
 export default {
-  props: ['stop'],
+  props: ['waitStop'],
   data() {
-    return {
-      stop: false,
-    };
+    return {};
   },
 };
 </script>
+<style lang="scss" scoped>
+@import '@/assets/public/scss/_pop.scss';
+</style>

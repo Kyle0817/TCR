@@ -19,28 +19,25 @@
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="true" :typeInput="false" />
     </div>
     <PopAskStop :showPop="showPop" @askStop="askStop" />
-    <div v-if="stop">
-      <div class="overlay"></div>
-      <div class="popBox outBox">
-        <p class="wait">處理中... 請稍後</p>
-      </div>
-    </div>
+    <WaitStop :waitStop="waitStop" />
   </div>
 </template>
 <script>
 import TradeBox from '@/components/public/TradeBox.vue';
 import PopAskStop from '@/components/public/PopAskStop.vue';
+import WaitStop from '@/components/public/WaitStop.vue';
 
 export default {
   components: {
     TradeBox,
     PopAskStop,
+    WaitStop,
   },
   data() {
     return {
       showPop: false,
       startBtn: true,
-      stop: false,
+      waitStop: false,
       startBtnText: '開始繳費',
       payment: 0,
       amount: 0,
@@ -118,12 +115,10 @@ export default {
     },
     askStop(res) {
       this.showPop = false;
-      this.stop = res;
+      this.waitStop = res;
       this.startBtn = false;
     },
   },
 };
 </script>
-<style lang="scss" scoped>
-@import '@/assets/public/scss/_pop.scss';
-</style>
+<style lang="scss" scoped></style>
