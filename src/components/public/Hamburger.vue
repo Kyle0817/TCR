@@ -13,15 +13,16 @@
   </div>
 </template>
 <script>
+import inventoryData from '@/mixins/inventoryData';
 import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
-import inventoryData from '@/mixins/inventoryData';
 
 export default {
-  components: { CassetteState, Tag },
   mixins: [inventoryData],
+  components: { CassetteState, Tag },
   data() {
     return {
+      inventoryData: [],
       tagBoxName: '鈔箱盒',
       isActive: false,
       tableTh: ['鈔箱', '模式', '面額', '狀態', '庫存數', '總額'],
@@ -35,8 +36,8 @@ export default {
       this.tagBoxName = box;
     },
   },
-  created() {
-    this.getTcrData();
+  async created() {
+    await this.getTcrData();
   },
 };
 </script>

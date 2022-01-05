@@ -37,14 +37,20 @@ export default {
       return textMapping;
     },
   },
+  watch: {
+    statistics(newVal) {
+      if (newVal) {
+        const {
+          TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
+        } = this.statistics;
+        this.showStatistics = {
+          TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
+        };
+      }
+    },
+  },
   created() {
-  //  console.log(this.statistics);
-    const {
-      TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
-    } = this.statistics;
-    this.showStatistics = {
-      TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
-    };
+    console.log(this.statistics);
   },
 };
 </script>

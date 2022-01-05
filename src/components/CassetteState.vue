@@ -172,11 +172,17 @@ export default {
       });
     },
   },
-  mounted() {
-    this.tcrClassification();
+  watch: {
+    tcrData(newVal) {
+      if (newVal) {
+        this.tcrClassification();
+      }
+    },
+  },
+  created() {
     this.cassetteData = this.cashBox;
   },
-  updated() {
+  beforeUpdate() {
     if (this.tagBoxName === '鈔箱盒') this.cassetteData = this.cashBox;
     else if (this.tagBoxName === '硬幣盒') this.cassetteData = this.coinBox;
     else this.cassetteData = this.recycleBox;

@@ -4,7 +4,7 @@
       <div class="top row">
         <div class="col whiteBox outBox">
           <h1>統計資料</h1>
-          <h3>上次營業日:{{ date.format('yyyy/MM/DD') }}</h3>
+          <h3>上次營業日:{{ date }}</h3>
           <Statistics :statistics="inventoryData.STATISTIC2" />
         </div>
         <div class="col secondBox outBox">
@@ -60,9 +60,9 @@
 import moment from 'moment';
 import textMapping from '@/data/textMapping';
 import Statistics from '@/components/Statistics.vue';
+import inventoryData from '@/mixins/inventoryData';
 import CassetteState from '@/components/CassetteState.vue';
 import Tag from '@/components/public/Tag.vue';
-import inventoryData from '@/mixins/inventoryData';
 
 const formatter = new Intl.NumberFormat();
 
@@ -76,7 +76,7 @@ export default {
   mixins: [inventoryData],
   data() {
     return {
-      inventoryData: {},
+      inventoryData: [],
       straight: true,
       toDate: moment(),
       week: moment().isoWeekday(),
@@ -113,12 +113,14 @@ export default {
         TCA: this.inventoryData.STATISTIC1.TCA,
         INVENTORY_SUM: this.inventoryData.STATISTIC1.TNA + this.inventoryData.STATISTIC1.TCA,
       };
-      this.date = moment(this.inventoryData.STATISTIC1.Date);
+      this.date = moment(this.inventoryData.STATISTIC1.Date).format('yyyy/MM/DD');
     },
   },
-  created() {
-    this.getTcrData();
-    this.initData();
+  async created() {
+    await this.getTcrData();
+    if (this.inventoryData) {
+      this.initData();
+    }
   },
 };
 </script>
