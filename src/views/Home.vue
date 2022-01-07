@@ -60,7 +60,6 @@
 import moment from 'moment';
 import textMapping from '@/data/textMapping';
 import Statistics from '@/components/Statistics.vue';
-import inventoryData from '@/mixins/inventoryData';
 import CassetteState from '@/components/CassetteState.vue';
 import Tag from '@/components/public/Tag.vue';
 
@@ -73,7 +72,6 @@ export default {
     CassetteState,
     Tag,
   },
-  mixins: [inventoryData],
   data() {
     return {
       inventoryData: [],
@@ -103,6 +101,14 @@ export default {
       return textMapping;
     },
   },
+  watch: {
+    // inventoryData(newVal) {
+    //   if (newVal) {
+    //     console.log(newVal);
+    //     this.initData();
+    //   }
+    // },
+  },
   methods: {
     clickBox(box) {
       this.tagBoxName = box;
@@ -116,11 +122,21 @@ export default {
       this.date = moment(this.inventoryData.STATISTIC1.Date).format('yyyy/MM/DD');
     },
   },
-  async created() {
-    await this.getTcrData();
-    if (this.inventoryData) {
+  created() {
+    this.$emitter.on('sendInventoryData', (data) => {
+      this.inventoryData = data;
       this.initData();
+    });
+  },
+  async beforeRouteUpdate(to, from) {
+    if (to.fullPath !== from.fullPath) {
+      console.log('to', to.fullPath, 'from', from.fullPath);
+      this.$emitter.on('sendInventoryData', (data) => {
+        this.inventoryData = data;
+        this.initData();
+      });
     }
+    console.log('to', to.fullPath, 'from', from.fullPath);
   },
 };
 </script>

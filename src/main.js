@@ -4,11 +4,13 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import mitt from 'mitt';
 import App from './App.vue';
 import router from './router';
 
 const mainApp = createApp(App);
 mainApp.config.globalProperties.$axios = axios;
+mainApp.config.globalProperties.$emitter = mitt();
 library.add(fas);
 mainApp.use(router, axios, VueAxios);
 mainApp.component('font-awesome-icon', FontAwesomeIcon);

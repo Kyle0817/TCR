@@ -4,7 +4,7 @@
       <h1>提款金額 :</h1>
       <h1 class="line col-6">$ {{ amount }}</h1>
       <button type="button" class="firstBtn">{{ startBtnText }}</button>
-      <button type="button" class="cancelBtn">清空</button>
+      <button type="button" class="cancelBtn" @click="clear">清空</button>
     </div>
     <div class="wrap row">
       <TradeBox :topTitle="topTitleCash" :titles="titles" :amountArrs="cashArr" :typeText="false" :typeInput="true" />
@@ -78,6 +78,16 @@ export default {
       ],
     };
   },
-  methods: {},
+  methods: {
+    clear() {
+      /* eslint-disable no-param-reassign */
+      this.cashArr.forEach((item) => {
+        item.Value = '0';
+      });
+      this.coinArr.forEach((item) => {
+        item.Value = '0';
+      });
+    },
+  },
 };
 </script>

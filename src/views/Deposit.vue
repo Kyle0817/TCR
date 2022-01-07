@@ -42,51 +42,46 @@ export default {
       topTitleCoin: '硬幣存款',
       cashArr: [
         {
-          Denomination: '2000',
-          Value: '0',
-          Amount: '0',
+          Denomination: 2000,
+          Value: 0,
         },
         {
-          Denomination: '1000',
-          Value: '0',
-          Amount: '0',
+          Denomination: 1000,
+          Value: 0,
         },
         {
-          Denomination: '500',
-          Value: '0',
-          Amount: '0',
+          Denomination: 500,
+          Value: 0,
         },
         {
-          Denomination: '200',
-          Value: '0',
-          Amount: '0',
+          Denomination: 200,
+          Value: 0,
         },
         {
-          Denomination: '100',
-          Value: '0',
-          Amount: '0',
+          Denomination: 100,
+          Value: 0,
         },
       ],
       coinArr: [
         {
-          Denomination: '50',
-          Value: '0',
-          Amount: '0',
+          Denomination: 50,
+          Value: 0,
+          Amount: 0,
         },
         {
-          Denomination: '10',
-          Value: '0',
-          Amount: '0',
+          Denomination: 10,
+          Value: 0,
+          Amount: 0,
         },
         {
-          Denomination: '5',
-          Value: '0',
-          Amount: '0',
+          Denomination: 5,
+          Value: 0,
+          Amount: 0,
         },
         {
-          Denomination: '1',
-          Value: '0',
-          Amount: '0',
+          Denomination: 1,
+          Value: 0,
+          Amount: 0,
         },
       ],
     };
@@ -94,58 +89,78 @@ export default {
   methods: {
     start() {
       if (this.startBtnText === '開始') {
-        // this.$axios;
-        // .post(`${this.tcrAPI}Deposit`)
-        // .then((res) => {
-        //   console.log(JSON.parse(res.data));
-        // }).then(this.$axios
-        //   .post(`${this.tcrAPI}DepositQuery`)
-        //   .then((res) => {
-        //     console.log(JSON.parse(JSON.parse(res.data).LParam));
-        //   }))
-        // .catch((err) => {
-        //   console.log(err);
-        // });
+        this.$axios
+          .post(`${this.tcrAPI}Deposit`)
+          .then((res) => {
+            console.log(JSON.parse(res.data));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
         this.startBtnText = '存入';
       } else {
         this.showPop = true;
       }
     },
     cancel() {
-      // this.$axios
-      //   .post(`${this.tcrAPI}DepositCancel`)
-      //   .then((res) => {
-      //     console.log(JSON.parse(JSON.parse(res.data).LParam));
-      this.startBtnText = '開始';
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+      this.$axios
+        .post(`${this.tcrAPI}DepositCancel`)
+        .then((res) => {
+          console.log(JSON.parse(JSON.parse(res.data).LParam));
+          this.startBtnText = '開始';
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     depositEnd() {
-      // this.$axios
-      //   .post(`${this.tcrAPI}DepositEnd`)
-      //   .then((res) => {
-      //     console.log(JSON.parse(JSON.parse(res.data).LParam));
-      //     this.cashArr = JSON.parse(JSON.parse(res.data).LParam);
-      //     this.amount = this.cashArr.reduce((total, e) => {
-      //       console.log(total, e);
-      //       return (total.Denomination * total.Value) + (e.Denomination * e.Value);
-      //     });
-      //     console.log(this.amount);
-
-      this.showPop = false;
-      this.stop = false;
-      this.startBtnText = '開始';
-      // })
-      // .catch((err) => {
-      //   console.log(err);
-      // });
+      /* eslint-disable no-param-reassign */
+      this.$axios
+        .post(`${this.tcrAPI}DepositEnd`)
+        .then((res) => {
+          console.log(JSON.parse(JSON.parse(res.data).LParam));
+          const resArr = JSON.parse(JSON.parse(res.data).LParam);
+          this.cashArr.forEach((cashItem) => {
+            resArr.forEach((item) => {
+              if (item.Denomination === cashItem.Denomination) {
+                cashItem.Value = item.Value;
+              }
+            });
+          });
+          this.coinArr.forEach((coinItem) => {
+            resArr.forEach((item) => {
+              if (item.Denomination === coinItem.Denomination) {
+                coinItem.Value = item.Value;
+              }
+            });
+          });
+          this.sum(resArr);
+          this.showPop = false;
+          this.stop = false;
+          this.startBtnText = '開始';
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-
+    sum(arr) {
+      // 總和
+      this.amount = arr.reduce((a, b) => a + b.Denomination * b.Value, 0);
+    },
     askStop(res) {
       this.showPop = false;
-      this.stop = res;
+      if (res === true) {
+        this.$axios
+          .post(`${this.tcrAPI}Query`)
+          .then((response) => {
+            const queryArr = JSON.parse(response.data);
+            this.sum(queryArr);
+            this.stop = true;
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     },
     keepDeposit() {
       this.showPop = false;

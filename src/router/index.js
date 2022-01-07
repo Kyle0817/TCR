@@ -11,6 +11,7 @@ const Withdrawal = () => import(/* webpackChunkName: "trade" */ '../views/Withdr
 const Pay = () => import(/* webpackChunkName: "trade" */ '../views/Pay.vue');
 const Exchange = () => import(/* webpackChunkName: "trade" */ '../views/Exchange.vue');
 const Counting = () => import(/* webpackChunkName: "trade" */ '../views/Counting.vue');
+const ReplenishCash = () => import(/* webpackChunkName: "maintain" */ '../views/ReplenishCash.vue');
 const routes = [
   {
     path: '/',
@@ -81,7 +82,7 @@ const routes = [
     path: '/maintain/replenishCash',
     name: 'ReplenishCash',
     components: {
-      default: Home,
+      default: ReplenishCash,
       Menu,
       Hamburger,
       Header,

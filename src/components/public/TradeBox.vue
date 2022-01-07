@@ -22,7 +22,7 @@
               <input type="number" v-model.lazy="amountArr.Value" />
             </td>
           </template>
-          <td class="number col-4">{{ parseInt(amountArr.Denomination) * parseInt(amountArr.Value) }}</td>
+          <td class="number col-4">{{ amountArr.Value === '' ? 0 : parseInt(amountArr.Denomination) * parseInt(amountArr.Value) }}</td>
         </tr>
       </tbody>
     </table>

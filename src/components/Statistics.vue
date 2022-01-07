@@ -44,13 +44,17 @@ export default {
           TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
         } = this.statistics;
         this.showStatistics = {
-          TND, TND2, TNU, TNL, TCD, TCD2, TCU, TCL,
+          TND,
+          TND2,
+          TNU,
+          TNL,
+          TCD,
+          TCD2,
+          TCU,
+          TCL,
         };
       }
     },
-  },
-  created() {
-    console.log(this.statistics);
   },
 };
 </script>
