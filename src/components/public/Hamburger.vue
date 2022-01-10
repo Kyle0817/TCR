@@ -35,9 +35,11 @@ export default {
       this.tagBoxName = box;
     },
     getData() {
+      this.inventoryData = [];
       const tcrAPI = process.env.VUE_APP_TCR_API;
       this.$axios.post(`${tcrAPI}Detail`).then((res) => {
         this.inventoryData = JSON.parse(JSON.parse(res.data).LParam);
+        // 因為只能call一次api，使用mitt傳給home
         this.$emitter.emit('sendInventoryData', this.inventoryData);
       });
     },
@@ -1306,32 +1308,23 @@ export default {
       this.$emitter.emit('sendInventoryData', this.inventoryData);
     },
   },
-  //   watch: {
-  //      '$route.params.search': {
-  //         handler: function(search) {
-  //            console.log(search)
-  //         },
-  //         deep: true,
-  //         immediate: true
-  //       }
-  // },
+  watch: {
+    $route(to, from) {
+      if (to.path !== from.path) {
+        // this.getData(); //真測試需打開
+        this.fakeData(); // 假資料用真測試需關掉
+      }
+    },
+  },
   mounted() {
-    this.fakeData();
+    this.fakeData(); // 假資料用
+  },
+  beforeRouteLeave() {
+    this.$emitter.all.clear(); // 清空mitt
+    this.inventoryData = [];
   },
   async created() {
-    // this.fakeData();
-    // await this.getTcrData();
-    const tcrAPI = 'https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all';
-    await this.$axios.get(tcrAPI).then((res) => {
-      this.$emitter.emit('sendTest', res.data.products);
-    });
-  },
-  async beforeRouteUpdate(to, from) {
-    if (to.fullPath !== from.fullPath) {
-      console.log('to', to.fullPath, 'from', from.fullPath);
-      this.$emitter.emit('sendInventoryData', this.inventoryData);
-      // this.fakeData();
-    }
+    // await this.getData();//真測試需打開
   },
 };
 </script>

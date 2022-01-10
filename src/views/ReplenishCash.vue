@@ -27,14 +27,14 @@ export default {
   methods: {},
   // 假資料用
   created() {
+    this.$emitter.on('sendInventoryData', (data) => {
+      console.log('接收inventoryData', data);
+      this.inventoryData1 = data;
+    });
     this.$emitter.on('sendTest', (data) => {
       console.log('接收', data);
       this.test = data;
     });
-    // this.$emitter.on('sendInventoryData', (data) => {
-    //   console.log('接收inventoryData', data);
-    //   this.inventoryData1 = data;
-    // });
   },
 };
 </script>

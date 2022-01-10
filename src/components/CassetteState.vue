@@ -175,6 +175,9 @@ export default {
   watch: {
     tcrData(newVal) {
       if (newVal) {
+        this.cashBox = [];
+        this.coinBox = [];
+        this.recycleBox = [];
         this.tcrClassification();
       }
     },

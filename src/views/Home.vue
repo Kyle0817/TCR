@@ -122,21 +122,13 @@ export default {
       this.date = moment(this.inventoryData.STATISTIC1.Date).format('yyyy/MM/DD');
     },
   },
+  mounted() {},
   created() {
     this.$emitter.on('sendInventoryData', (data) => {
+      // console.log('接收inventoryData', data);
       this.inventoryData = data;
       this.initData();
     });
-  },
-  async beforeRouteUpdate(to, from) {
-    if (to.fullPath !== from.fullPath) {
-      console.log('to', to.fullPath, 'from', from.fullPath);
-      this.$emitter.on('sendInventoryData', (data) => {
-        this.inventoryData = data;
-        this.initData();
-      });
-    }
-    console.log('to', to.fullPath, 'from', from.fullPath);
   },
 };
 </script>
