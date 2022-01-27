@@ -8,19 +8,21 @@
     <div class="infoWrap">
       <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
-      <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.INVENTORY" />
+      <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.INVENTORY" ref="casChild" />
+      <!-- <Test :test="test" /> -->
     </div>
   </div>
 </template>
 <script>
 import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
+// import Test from '@/components/Test.vue';
 
 export default {
   components: { CassetteState, Tag },
   data() {
     return {
-      test: {},
+      // test: {},
       inventoryData: [],
       tagBoxName: '鈔箱盒',
       isActive: false,
@@ -1307,24 +1309,53 @@ export default {
       this.inventoryData = tcrData.LParam;
       this.$emitter.emit('sendInventoryData', this.inventoryData);
     },
+    askData() {
+      const dispenseArr = [];
+      const childArr = this.$refs.casChild.cassetteData;
+      childArr.forEach((item) => {
+        const mode = item.Mode;
+        if (mode === 'R' || mode === 'P') {
+          dispenseArr.push({
+            Denomination: item.Denomination,
+            Value: item.Value,
+          });
+        }
+      });
+      this.$emitter.emit('sendData', dispenseArr);
+    },
   },
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
         // this.getData(); //真測試需打開
         this.fakeData(); // 假資料用真測試需關掉
+        if (to.path === '/trade/withdrawal') {
+          this.$nextTick(() => {
+            this.askData();
+          });
+        }
       }
     },
   },
   mounted() {
-    this.fakeData(); // 假資料用
+    this.fakeData(); // 假資料用真測試需關掉
+    this.$nextTick(() => {
+      this.askData();
+    });
   },
   beforeRouteLeave() {
     this.$emitter.all.clear(); // 清空mitt
     this.inventoryData = [];
   },
-  async created() {
-    // await this.getData();//真測試需打開
+  // async created() {
+  //   // await this.getData();//真測試需打開
+  // },
+  created() {
+    // console.log('父層 created');
+    // this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
+    //   this.test = res.data.products;
+    //   console.log('父層 created Axios', this.test);
+    // });
   },
 };
 </script>
