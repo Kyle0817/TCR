@@ -10,63 +10,67 @@
       <TradeBox :topTitle="topTitleCash" :titles="titles" :amountArrs="cashArr" :typeText="false" :typeInput="true" />
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="false" :typeInput="true" />
     </div>
+    <WaitStop :waitStop="waitStop" />
   </div>
 </template>
 
 <script>
 import TradeBox from '@/components/public/TradeBox.vue';
+import WaitStop from '@/components/public/WaitStop.vue';
 
 export default {
   components: {
     TradeBox,
+    WaitStop,
   },
   data() {
     return {
       startBtnText: '確認提款',
-      // amount: 0,
       titles: ['面額', '數量', '金額'],
       topTitleCash: '紙鈔提款',
       topTitleCoin: '硬幣提款',
       currencies: [],
       dispenseArr: [],
-      noCash: '',
+      waitStop: false,
+      noCashWarn: '',
+      enoughWarn: '',
       cashArr: [
         {
-          Denomination: '2000',
+          Denomination: 2000,
           Value: 0,
         },
         {
-          Denomination: '1000',
+          Denomination: 1000,
           Value: 0,
         },
         {
-          Denomination: '500',
+          Denomination: 500,
           Value: 0,
         },
         {
-          Denomination: '200',
+          Denomination: 200,
           Value: 0,
         },
         {
-          Denomination: '100',
+          Denomination: 100,
           Value: 0,
         },
       ],
       coinArr: [
         {
-          Denomination: '50',
+          Denomination: 50,
           Value: 0,
         },
         {
-          Denomination: '10',
+          Denomination: 10,
           Value: 0,
         },
         {
-          Denomination: '5',
+          Denomination: 5,
           Value: 0,
         },
         {
-          Denomination: '1',
+          Denomination: 1,
           Value: 0,
         },
       ],
@@ -91,24 +95,45 @@ export default {
       this.currencies = [];
       this.forEachFun(this.cashArr);
       this.forEachFun(this.coinArr);
+      const noMoney = [];
       this.currencies.forEach((curr) => {
+        let has = 0;
+        const currD = curr.Denomination;
+        // 判斷有沒有面額
+        const x = this.dispenseArr.find((e) => e.Denomination === currD);
+        if (!x) noMoney.push(currD);
+        // 判斷有面額 但有無足夠張數
         this.dispenseArr.forEach((dis) => {
-          const currD = parseInt(curr.Denomination, 10);
-          const disD = parseInt(dis.Denomination, 10);
-          if (currD === disD && curr.Value > dis.Value) {
-            console.log(`提領${currD}:超過${curr.Value - dis.Value}張`);
+          const disD = dis.Denomination;
+          if (currD === disD) {
+            if (has === 0 && curr.Value > dis.Value) {
+              has = curr.Value - dis.Value;
+            } else if (has > dis.Value) {
+              this.enoughWarn = `提領${currD}:超過${has - dis.Value}張`;
+            }
           }
-          // if (currD !== disD) {
-          //   console.log(`沒有${currD}面額`);
-          // }
         });
       });
-      console.log(this.currencies);
-      console.log(this.dispenseArr);
+      if (noMoney.length !== 0) {
+        const noMoneyText = noMoney.join('、');
+        this.noCashWarn = `沒有面額${noMoneyText}可提領`;
+      }
+      this.textWarn();
+    },
+    textWarn() {
+      if (this.noCashWarn === '' && this.enoughWarn === '') {
+        this.waitStop = true;
+      } else {
+        console.log(this.enoughWarn);
+        console.log(this.noCashWarn);
+        this.noCashWarn = '';
+        this.enoughWarn = '';
+      }
     },
     sum(arr) {
       return arr.reduce((a, b) => a + b.Denomination * b.Value, 0);
     },
+    hasDen() {},
     forEachFun(arr) {
       arr.forEach((item) => {
         if (item.Value !== 0 && item.Value !== '') {

@@ -27,6 +27,7 @@ export default {
       tagBoxName: '鈔箱盒',
       isActive: false,
       tableTh: ['鈔箱', '模式', '面額', '狀態', '庫存數', '總額'],
+      dispenseArr: [],
     };
   },
   methods: {
@@ -59,7 +60,7 @@ export default {
                 {
                   Currency: 'TWD', // 貨幣
                   Denomination: 1000, // 面額
-                  Value: 0, // 張數
+                  Value: 4, // 張數
                 },
               ],
             },
@@ -1309,19 +1310,24 @@ export default {
       this.inventoryData = tcrData.LParam;
       this.$emitter.emit('sendInventoryData', this.inventoryData);
     },
-    askData() {
-      const dispenseArr = [];
-      const childArr = this.$refs.casChild.cassetteData;
-      childArr.forEach((item) => {
+    forEachFun(arr) {
+      arr.forEach((item) => {
         const mode = item.Mode;
         if (mode === 'R' || mode === 'P') {
-          dispenseArr.push({
+          this.dispenseArr.push({
             Denomination: item.Denomination,
             Value: item.Value,
           });
         }
       });
-      this.$emitter.emit('sendData', dispenseArr);
+    },
+    askData() {
+      const cashArr = this.$refs.casChild.cashBox;
+      const coinArr = this.$refs.casChild.coinBox;
+      this.forEachFun(cashArr);
+      this.forEachFun(coinArr);
+      this.$emitter.emit('sendData', this.dispenseArr);
+      this.dispenseArr = [];
     },
   },
   watch: {
