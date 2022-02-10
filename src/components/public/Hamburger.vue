@@ -9,20 +9,20 @@
       <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
       <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.INVENTORY" ref="casChild" />
-      <!-- <Test :test="test" /> -->
+      <Test :test="test" ref="testChild" />
     </div>
   </div>
 </template>
 <script>
 import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
-// import Test from '@/components/Test.vue';
+import Test from '@/components/Test.vue';
 
 export default {
-  components: { CassetteState, Tag },
+  components: { CassetteState, Tag, Test },
   data() {
     return {
-      // test: {},
+      test: {},
       inventoryData: [],
       tagBoxName: '鈔箱盒',
       isActive: false,
@@ -1321,48 +1321,75 @@ export default {
         }
       });
     },
+    // 相加重複的面額
+    setFilter() {
+      const set = new Set();
+      const filterArr = this.dispenseArr.filter((item) => (!set.has(item.Denomination) ? set.add(item.Denomination) : false));
+      /* eslint-disable no-param-reassign */
+      const newArr = JSON.parse(JSON.stringify(filterArr));
+      newArr.forEach((item) => {
+        item.Value = 0;
+        this.dispenseArr.forEach((e) => {
+          if (item.Denomination === e.Denomination) {
+            item.Value += e.Value;
+          }
+        });
+      });
+      this.$emitter.emit('sendData', newArr);
+    },
     askData() {
       const cashArr = this.$refs.casChild.cashBox;
       const coinArr = this.$refs.casChild.coinBox;
       this.forEachFun(cashArr);
       this.forEachFun(coinArr);
-      this.$emitter.emit('sendData', this.dispenseArr);
+      this.setFilter();
       this.dispenseArr = [];
+      // const testData = this.$refs.testChild.test123;
+      // console.log(this.$refs.testChild.test123);
+      // this.$emitter.emit('sendTestData', testData);
+    },
+    getTestData() {
+      this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
+        this.$emitter.emit('sendTestData', res.data.products);
+      });
     },
   },
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
-        // this.getData(); //真測試需打開
+        // this.getData(); // 真測試需打開
         this.fakeData(); // 假資料用真測試需關掉
-        if (to.path === '/trade/withdrawal') {
-          this.$nextTick(() => {
-            this.askData();
-          });
-        }
+        this.getTestData();
       }
     },
   },
   mounted() {
     this.fakeData(); // 假資料用真測試需關掉
-    this.$nextTick(() => {
-      this.askData();
-    });
   },
   beforeRouteLeave() {
     this.$emitter.all.clear(); // 清空mitt
     this.inventoryData = [];
   },
-  // async created() {
-  //   // await this.getData();//真測試需打開
-  // },
-  created() {
-    // console.log('父層 created');
-    // this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
-    //   this.test = res.data.products;
-    //   console.log('父層 created Axios', this.test);
-    // });
+  updated() {
+    this.$nextTick(() => {
+      if (this.$route.path === '/trade/withdrawal') {
+        this.askData();
+      }
+    });
   },
+
+  async created() {
+    // await this.getData();// 真測試需打開
+    await this.getTestData();
+  },
+  // created() {
+  //   // this.fakeData();
+  //   // console.log('父層 created');
+  //   this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
+  //     this.test = res.data.products;
+  //     // console.log('父層 created Axios', this.test);
+  //   });
+  // },
 };
 </script>
 <style lang="scss" scoped>

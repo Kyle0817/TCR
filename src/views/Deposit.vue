@@ -11,6 +11,7 @@
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="true" :typeInput="false" />
     </div>
     <PopAskStop :showPop="showPop" @askStop="askStop" />
+    <WaitStop :waitStop="waitStop" />
     <div class="confirmDeposit" v-if="stop">
       <div class="overlay"></div>
       <div class="popBox outBox">
@@ -24,17 +25,19 @@
 <script>
 import TradeBox from '@/components/public/TradeBox.vue';
 import PopAskStop from '@/components/public/PopAskStop.vue';
+import WaitStop from '@/components/public/WaitStop.vue';
 
 export default {
   components: {
     TradeBox,
     PopAskStop,
+    WaitStop,
   },
   data() {
     return {
-      tcrAPI: '',
       stop: false,
       showPop: false,
+      waitStop: false,
       startBtnText: '開始',
       amount: 0,
       titles: ['面額', '數量', '金額'],
@@ -90,7 +93,7 @@ export default {
     start() {
       if (this.startBtnText === '開始') {
         this.$axios
-          .post(`${this.tcrAPI}Deposit`)
+          .post(`${process.env.VUE_APP_TCR_API}Deposit`)
           .then((res) => {
             console.log(JSON.parse(res.data));
           })
@@ -104,7 +107,7 @@ export default {
     },
     cancel() {
       this.$axios
-        .post(`${this.tcrAPI}DepositCancel`)
+        .post(`${process.env.VUE_APP_TCR_API}DepositCancel`)
         .then((res) => {
           console.log(JSON.parse(JSON.parse(res.data).LParam));
           this.startBtnText = '開始';
@@ -114,9 +117,12 @@ export default {
         });
     },
     depositEnd() {
+      this.showPop = false;
+      this.stop = false;
+      this.waitStop = true;
       /* eslint-disable no-param-reassign */
       this.$axios
-        .post(`${this.tcrAPI}DepositEnd`)
+        .post(`${process.env.VUE_APP_TCR_API}DepositEnd`)
         .then((res) => {
           console.log(JSON.parse(JSON.parse(res.data).LParam));
           const resArr = JSON.parse(JSON.parse(res.data).LParam);
@@ -135,8 +141,7 @@ export default {
             });
           });
           this.sum(resArr);
-          this.showPop = false;
-          this.stop = false;
+          this.waitStop = false;
           this.startBtnText = '開始';
         })
         .catch((err) => {
@@ -151,7 +156,7 @@ export default {
       this.showPop = false;
       if (res === true) {
         this.$axios
-          .post(`${this.tcrAPI}Query`)
+          .post(`${process.env.VUE_APP_TCR_API}Query`)
           .then((response) => {
             const queryArr = JSON.parse(response.data);
             this.sum(queryArr);
@@ -166,9 +171,6 @@ export default {
       this.showPop = false;
       this.stop = false;
     },
-  },
-  created() {
-    this.tcrAPI = process.env.VUE_APP_TCR_API;
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="amountBar row">
       <h1>提款金額 :</h1>
       <h1 class="line col-6">$ {{ amount }}</h1>
-      <button type="button" class="firstBtn" @click="starWithdrawal">{{ startBtnText }}</button>
+      <button type="button" class="firstBtn" @click="startWithdrawal">{{ startBtnText }}</button>
       <button type="button" class="cancelBtn" @click="clear">清空</button>
     </div>
     <div class="wrap row">
@@ -11,17 +11,21 @@
       <TradeBox :topTitle="topTitleCoin" :titles="titles" :amountArrs="coinArr" :typeText="false" :typeInput="true" />
     </div>
     <WaitStop :waitStop="waitStop" />
+    <WarnPop :warnPop="warnPop" :warnText="warnText" @closePop="closePop" />
   </div>
 </template>
 
 <script>
+import capacity from '@/data/capacity';
 import TradeBox from '@/components/public/TradeBox.vue';
 import WaitStop from '@/components/public/WaitStop.vue';
+import WarnPop from '@/components/public/WarnPop.vue';
 
 export default {
   components: {
     TradeBox,
     WaitStop,
+    WarnPop,
   },
   data() {
     return {
@@ -32,6 +36,8 @@ export default {
       currencies: [],
       dispenseArr: [],
       waitStop: false,
+      warnPop: false,
+      warnText: '',
       noCashWarn: '',
       enoughWarn: '',
       cashArr: [
@@ -91,41 +97,43 @@ export default {
         item.Value = 0;
       });
     },
-    starWithdrawal() {
-      this.currencies = [];
-      this.forEachFun(this.cashArr);
-      this.forEachFun(this.coinArr);
-      const noMoney = [];
-      this.currencies.forEach((curr) => {
-        let has = 0;
-        const currD = curr.Denomination;
-        // 判斷有沒有面額
-        const x = this.dispenseArr.find((e) => e.Denomination === currD);
-        if (!x) noMoney.push(currD);
-        // 判斷有面額 但有無足夠張數
-        this.dispenseArr.forEach((dis) => {
-          const disD = dis.Denomination;
-          if (currD === disD) {
-            if (has === 0 && curr.Value > dis.Value) {
-              has = curr.Value - dis.Value;
-            } else if (has > dis.Value) {
-              this.enoughWarn = `提領${currD}:超過${has - dis.Value}張`;
+    startWithdrawal() {
+      if (this.amount === 0) {
+        this.warnPop = true;
+        this.warnText = '請輸入提款數量';
+      } else {
+        this.currencies = [];
+        this.forEachFun(this.cashArr);
+        this.forEachFun(this.coinArr);
+        const noMoney = [];
+        this.currencies.forEach((curr) => {
+          const currD = curr.Denomination;
+          // 判斷有沒有面額
+          const x = this.dispenseArr.find((e) => e.Denomination === currD);
+          if (!x) noMoney.push(currD);
+          // 判斷有面額 但有無足夠張數
+          this.dispenseArr.forEach((dis) => {
+            const disD = dis.Denomination;
+            if (currD === disD && curr.Value > dis.Value) {
+              this.enoughWarn += `${currD}面額超過提領數量:${curr.Value - dis.Value}<br/>`;
             }
-          }
+          });
         });
-      });
-      if (noMoney.length !== 0) {
-        const noMoneyText = noMoney.join('、');
-        this.noCashWarn = `沒有面額${noMoneyText}可提領`;
+        if (noMoney.length !== 0) {
+          const noMoneyText = noMoney.join('、');
+          this.noCashWarn = `沒有面額${noMoneyText}可提領`;
+        }
+        this.textWarn();
       }
-      this.textWarn();
     },
     textWarn() {
       if (this.noCashWarn === '' && this.enoughWarn === '') {
         this.waitStop = true;
+        // this.postDispense();
+        this.checkCapacity();
       } else {
-        console.log(this.enoughWarn);
-        console.log(this.noCashWarn);
+        this.warnText = `${this.enoughWarn}<br />${this.noCashWarn}`;
+        this.warnPop = true;
         this.noCashWarn = '';
         this.enoughWarn = '';
       }
@@ -133,7 +141,9 @@ export default {
     sum(arr) {
       return arr.reduce((a, b) => a + b.Denomination * b.Value, 0);
     },
-    hasDen() {},
+    closePop(res) {
+      this.warnPop = res;
+    },
     forEachFun(arr) {
       arr.forEach((item) => {
         if (item.Value !== 0 && item.Value !== '') {
@@ -144,6 +154,26 @@ export default {
           });
         }
       });
+    },
+    checkCapacity() {
+      console.log(JSON.stringify(this.currencies));
+      console.log(capacity);
+    },
+    postDispense() {
+      this.$axios({
+        method: 'post',
+        url: `${process.env.VUE_APP_TCR_API}Dispense`,
+        params: {
+          currencies: JSON.stringify(this.currencies),
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+          this.waitStop = false;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
   created() {

@@ -101,14 +101,7 @@ export default {
       return textMapping;
     },
   },
-  watch: {
-    // inventoryData(newVal) {
-    //   if (newVal) {
-    //     console.log(newVal);
-    //     this.initData();
-    //   }
-    // },
-  },
+  watch: {},
   methods: {
     clickBox(box) {
       this.tagBoxName = box;
