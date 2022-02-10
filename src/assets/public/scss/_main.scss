@@ -88,6 +88,14 @@ button {
     transform: translateY(1px);
   }
 }
+.warnBtn {
+  background-color: darken($warnColor, 10%);
+  color: $red;
+  padding: 10px 15px;
+  &:active {
+    transform: translateY(1px);
+  }
+}
 .svgBtn {
   outline: none;
   background-color: $thirdColor;

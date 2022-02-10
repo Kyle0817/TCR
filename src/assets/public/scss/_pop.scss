@@ -17,11 +17,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  &.warnBox {
+    background-color: $warnColor;
+  }
   p {
     margin-bottom: 20px;
     font-size: 18px;
     &.wait {
       margin: 0;
+    }
+    &.twoLines {
+      line-height: 25px;
     }
   }
   button {

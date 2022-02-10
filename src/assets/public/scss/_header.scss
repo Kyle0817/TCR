@@ -55,7 +55,7 @@ header {
           }
           &.active {
             background-color: $warnColor;
-            color: rgb(190, 3, 3);
+            color: $red;
             font-weight: 600;
           }
         }
