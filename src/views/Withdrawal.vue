@@ -129,8 +129,7 @@ export default {
     textWarn() {
       if (this.noCashWarn === '' && this.enoughWarn === '') {
         this.waitStop = true;
-        // this.postDispense();
-        this.checkCapacity();
+        // this.postDispense(); // 真測試需打開
       } else {
         this.warnText = `${this.enoughWarn}<br />${this.noCashWarn}`;
         this.warnPop = true;
@@ -155,9 +154,28 @@ export default {
         }
       });
     },
+    // 檢查是否低於5%
     checkCapacity() {
-      console.log(JSON.stringify(this.currencies));
-      console.log(capacity);
+      const low = [];
+      this.currencies.forEach((curr) => {
+        const result = this.dispenseArr.find((e) => curr.Denomination === e.Denomination);
+        const lastValue = result.Value - curr.Value;
+        if (curr.Denomination > 100) {
+          if (lastValue < capacity.capacityTCR / 5) {
+            low.push(curr.Denomination);
+          }
+        } else {
+          const filter = capacity.capacityCRF.find((e) => curr.Denomination === e.Denomination);
+          if (lastValue < filter.Value / 5) {
+            low.push(curr.Denomination);
+          }
+        }
+      });
+      const lowDenomination = low.join('、');
+      if (low.length > 0) {
+        this.warnText = `面額${lowDenomination}庫存低於5%`;
+        this.warnPop = true;
+      }
     },
     postDispense() {
       this.$axios({
@@ -170,6 +188,7 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.waitStop = false;
+          this.checkCapacity();
         })
         .catch((err) => {
           console.log(err);
