@@ -1359,7 +1359,7 @@ export default {
       if (to.path !== from.path) {
         // this.getData(); // 真測試需打開
         this.fakeData(); // 假資料用真測試需關掉
-        this.getTestData();
+        // this.getTestData();
       }
     },
   },

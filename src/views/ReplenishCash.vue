@@ -1,40 +1,35 @@
 <template>
   <div class="home view">
     <Test :test="test" />
-    <!-- <Statistics :statistics="inventoryData1.STATISTIC2" /> -->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import mitt from 'mitt';
 import Test from '@/components/Test.vue';
-// import Statistics from '@/components/Statistics.vue';
 
-// const emitter = mitt();
 export default {
   components: {
     Test,
-    // Statistics,
   },
   data() {
     return {
       test: {},
-      // inventoryData1: [],
     };
   },
-
+  mounted() {
+    // console.log('父層 mounted', this.test);
+  },
   methods: {},
-  // 假資料用
   created() {
-    this.$emitter.on('sendInventoryData', (data) => {
-      console.log('接收inventoryData', data);
-      this.inventoryData1 = data;
-    });
-    this.$emitter.on('sendTest', (data) => {
-      console.log('接收', data);
+    this.$emitter.on('sendTestData', (data) => {
+      console.log('接收sendTestData', data);
       this.test = data;
     });
+    // console.log('父層 created');
+    // this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
+    //   this.test = res.data.products;
+    //   // console.log('父層 created Axios', this.test);
+    // });
   },
 };
 </script>
