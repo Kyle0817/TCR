@@ -9,17 +9,15 @@
       <h1>鈔箱庫存狀態</h1>
       <Tag @selectBox="clickBox" />
       <CassetteState :hamburger="true" :th="tableTh" :tag-boxName="tagBoxName" :tcrData="inventoryData.INVENTORY" ref="casChild" />
-      <Test :test="test" ref="testChild" />
     </div>
   </div>
 </template>
 <script>
 import Tag from '@/components/public/Tag.vue';
 import CassetteState from '@/components/CassetteState.vue';
-import Test from '@/components/Test.vue';
 
 export default {
-  components: { CassetteState, Tag, Test },
+  components: { CassetteState, Tag },
   data() {
     return {
       test: {},
