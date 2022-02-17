@@ -1344,9 +1344,6 @@ export default {
       this.forEachFun(coinArr);
       this.setFilter();
       this.dispenseArr = [];
-      // const testData = this.$refs.testChild.test123;
-      // console.log(this.$refs.testChild.test123);
-      // this.$emitter.emit('sendTestData', testData);
     },
     getTestData() {
       this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
@@ -1357,14 +1354,13 @@ export default {
   watch: {
     $route(to, from) {
       if (to.path !== from.path) {
-        // this.getData(); // 真測試需打開
-        this.fakeData(); // 假資料用真測試需關掉
-        // this.getTestData();
+        this.getData(); // 真測試需打開
+        // this.fakeData(); // 假資料用真測試需關掉
       }
     },
   },
   mounted() {
-    this.fakeData(); // 假資料用真測試需關掉
+    // this.fakeData(); // 假資料用真測試需關掉
   },
   beforeRouteLeave() {
     this.$emitter.all.clear(); // 清空mitt
@@ -1379,17 +1375,8 @@ export default {
   },
 
   async created() {
-    // await this.getData();// 真測試需打開
-    await this.getTestData();
+    await this.getData(); // 真測試需打開
   },
-  // created() {
-  //   // this.fakeData();
-  //   // console.log('父層 created');
-  //   this.$axios.get('https://vue3-course-api.hexschool.io/api/jing-siao-api/products/all').then((res) => {
-  //     this.test = res.data.products;
-  //     // console.log('父層 created Axios', this.test);
-  //   });
-  // },
 };
 </script>
 <style lang="scss" scoped>

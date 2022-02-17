@@ -129,7 +129,7 @@ export default {
     textWarn() {
       if (this.noCashWarn === '' && this.enoughWarn === '') {
         this.waitStop = true;
-        // this.postDispense(); // 真測試需打開
+        this.postDispense(); // 真測試需打開 假資料須關掉
       } else {
         this.warnText = `${this.enoughWarn}<br />${this.noCashWarn}`;
         this.warnPop = true;
